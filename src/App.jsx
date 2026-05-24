@@ -200,22 +200,20 @@ const warmupSteps = [
   {
     num: "01",
     label: "Ativação geral",
-    desc: "3–5 min de caminhada rápida, corrida leve ou corda.",
+    desc: "3–5 min de caminhada rápida, corrida leve ou corda para elevar a temperatura corporal e preparar o sistema cardiovascular.",
+    image: "/images/corda.png",
   },
   {
     num: "02",
-    label: "Mobilidade completa",
-    desc: "Alongamento dinâmico de tornozelo, quadril, coluna, ombros, cotovelos e punhos.",
+    label: "Alongamento",
+    desc: "Alongamentos dinâmicos para preparar músculos e articulações antes dos deslocamentos e golpes em quadra.",
+    image: "/images/alongamento.png",
   },
   {
     num: "03",
-    label: "Ativação muscular",
-    desc: "Glúteos, panturrilha, core, estabilizadores do ombro e escápulas.",
-  },
-  {
-    num: "04",
-    label: "Movimento específico",
-    desc: "Split step, deslocamento lateral, recuperação de quadra e golpes simulados.",
+    label: "Mobilidade articular",
+    desc: "Movimentos controlados para tornozelos, quadris, coluna torácica, ombros, cotovelos e punhos.",
+    image: "/images/mobilidade.png",
   },
 ];
 
@@ -742,37 +740,83 @@ export default function App() {
         </p>
 
         <div
-          className="cards-4"
-          style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}
+  className="cards-3"
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: 20,
+  }}
+>
+  {warmupSteps.map(({ num, label, desc, image }) => (
+    <div
+      key={num}
+      className="card-lined"
+      style={{
+        overflow: "hidden",
+        background: "#101010",
+      }}
+    >
+      <div
+        style={{
+          height: 280,
+          background: "#F4EFE8",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderBottom: "1px solid #1A1A1A",
+        }}
+      >
+        <img
+          src={image}
+          alt={label}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+            padding: 12,
+          }}
+        />
+      </div>
+
+      <div style={{ padding: 24 }}>
+        <div
+          style={{
+            fontFamily: "'Bebas Neue', sans-serif",
+            fontSize: 44,
+            color: "#1E1E1E",
+            lineHeight: 1,
+            marginBottom: 14,
+          }}
         >
-          {warmupSteps.map(({ num, label, desc }) => (
-            <div key={num} className="card-lined" style={{ padding: 24 }}>
-              <div
-                style={{
-                  fontFamily: "'Bebas Neue', sans-serif",
-                  fontSize: 48,
-                  color: "#1E1E1E",
-                  lineHeight: 1,
-                  marginBottom: 16,
-                }}
-              >
-                {num}
-              </div>
-              <div className="accent-line" style={{ marginBottom: 16, width: 32 }} />
-              <div
-                style={{
-                  fontSize: 14,
-                  fontWeight: 700,
-                  color: "#E0E0E0",
-                  marginBottom: 10,
-                }}
-              >
-                {label}
-              </div>
-              <div style={{ fontSize: 13, color: "#666", lineHeight: 1.6 }}>{desc}</div>
-            </div>
-          ))}
+          {num}
         </div>
+
+        <div className="accent-line" style={{ marginBottom: 16, width: 36 }} />
+
+        <div
+          style={{
+            fontSize: 15,
+            fontWeight: 700,
+            color: "#E0E0E0",
+            marginBottom: 10,
+          }}
+        >
+          {label}
+        </div>
+
+        <div
+          style={{
+            fontSize: 13,
+            color: "#777",
+            lineHeight: 1.65,
+          }}
+        >
+          {desc}
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
       </section>
 
       <section
