@@ -144,15 +144,16 @@ const exerciseLibrary = [
       "Simular esforços repetidos do tênis com recuperação incompleta.",
     level: "Avançado / Alto rendimento",
   },
+  {
+    category: "Resistência aeróbica",
+    title: "30 minutos de exercício aeróbico contínuo",
+    objective:
+      "Manter esforço leve a moderado por 30 minutos, buscando aproximadamente 60–70% da frequência cardíaca máxima e controle da respiração.",
+    level: "Intermediário / Avançado",
+    image: "/images/aerobico-30min.png",
+  },
 ];
-{
-  category: "Resistência aeróbica",
-  title: "30 minutos de exercício aeróbico contínuo",
-  objective:
-    "Manter esforço leve a moderado por 30 minutos, buscando aproximadamente 60–70% da frequência cardíaca máxima e controle da respiração.",
-  level: "Intermediário / Avançado",
-  image: "/images/aerobico-30min.png",
-},
+
 const injuryCards = [
   {
     title: "Ombro",
