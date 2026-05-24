@@ -6,44 +6,23 @@ import {
   Footprints,
   Target,
   CalendarDays,
-  Search,
   Phone,
   Stethoscope,
   Zap,
   Users,
+  ChevronRight,
+  Search,
 } from "lucide-react";
-
-const Button = ({ children, className = "", variant = "default", ...props }) => {
-  const base =
-    "inline-flex items-center justify-center rounded-2xl px-6 py-4 text-base font-semibold transition focus:outline-none focus:ring-4";
-  const styles =
-    variant === "outline"
-      ? "border border-white/30 bg-white/10 text-white hover:bg-white/20 focus:ring-white/20"
-      : "bg-lime-400 text-slate-950 hover:bg-lime-300 focus:ring-lime-200";
-  return (
-    <button className={`${base} ${styles} ${className}`} {...props}>
-      {children}
-    </button>
-  );
-};
-
-const Card = ({ children, className = "" }) => (
-  <div className={`rounded-2xl bg-white shadow-sm ${className}`}>{children}</div>
-);
-
-const CardContent = ({ children, className = "" }) => (
-  <div className={`p-6 ${className}`}>{children}</div>
-);
 
 const contactNumber = "+14708367932";
 const whatsappLink = `https://wa.me/${contactNumber.replace(/[^0-9]/g, "")}`;
 
 const sections = [
   { id: "home", label: "Início" },
-  { id: "about", label: "Sobre o guia" },
-  { id: "target", label: "Para quem é" },
+  { id: "about", label: "Sobre" },
+  { id: "target", label: "Para quem" },
   { id: "warmup", label: "Aquecimento" },
-  { id: "sessions", label: "Treinos por nível" },
+  { id: "sessions", label: "Treinos" },
   { id: "library", label: "Biblioteca" },
   { id: "injury", label: "Prevenção" },
   { id: "progression", label: "Plano" },
@@ -52,33 +31,36 @@ const sections = [
 
 const capacities = [
   {
-    icon: <Footprints className="h-6 w-6" />,
+    icon: <Footprints className="w-5 h-5" />,
     title: "Deslocamento e agilidade",
-    text: "Aceleração, desaceleração, split step, deslocamentos laterais, recuperação de quadra e mudança rápida de direção.",
+    text: "Aceleração, split step, deslocamentos laterais, recuperação de quadra e mudança rápida de direção.",
+    accent: "#B8F400",
   },
   {
-    icon: <Dumbbell className="h-6 w-6" />,
+    icon: <Dumbbell className="w-5 h-5" />,
     title: "Força e estabilidade",
-    text: "Base física para sustentar volume de treino, proteger articulações e melhorar eficiência nos golpes e deslocamentos.",
+    text: "Base física para sustentar volume de treino, proteger articulações e melhorar eficiência nos golpes.",
+    accent: "#00D4AA",
   },
   {
-    icon: <Activity className="h-6 w-6" />,
+    icon: <Activity className="w-5 h-5" />,
     title: "Resistência específica",
-    text: "Capacidade de manter intensidade durante treinos, rallies longos e repetições sucessivas de esforço em quadra.",
+    text: "Capacidade de manter intensidade durante rallies longos e repetições sucessivas de esforço em quadra.",
+    accent: "#FF6B35",
   },
   {
-    icon: <Target className="h-6 w-6" />,
+    icon: <Target className="w-5 h-5" />,
     title: "Potência rotacional",
-    text: "Transferência de força entre pernas, quadril, tronco e membros superiores para golpes mais potentes e coordenados.",
+    text: "Transferência de força entre pernas, quadril, tronco e membros superiores para golpes coordenados.",
+    accent: "#A78BFA",
   },
 ];
 
 const sessionTemplates = [
   {
     level: "Intermediário",
-    duration: "45–60 min",
-    focus:
-      "Agilidade, estabilidade, resistência específica e melhora da qualidade do movimento",
+    tag: "45–60 min",
+    focus: "Agilidade, estabilidade, resistência específica e melhora da qualidade do movimento",
     blocks: [
       "5–8 min de aquecimento geral",
       "10–12 min de coordenação e deslocamento",
@@ -89,9 +71,8 @@ const sessionTemplates = [
   },
   {
     level: "Avançado",
-    duration: "60–75 min",
-    focus:
-      "Mudança de direção, controle corporal, potência e tolerância a maior volume de treino",
+    tag: "60–75 min",
+    focus: "Mudança de direção, controle corporal, potência e tolerância a maior volume de treino",
     blocks: [
       "8–10 min de preparação física",
       "15 min de agilidade e desaceleração",
@@ -102,9 +83,8 @@ const sessionTemplates = [
   },
   {
     level: "Alto rendimento",
-    duration: "75–90 min",
-    focus:
-      "Performance, repetição de esforços intensos, prevenção de lesões e robustez física",
+    tag: "75–90 min",
+    focus: "Performance, repetição de esforços intensos, prevenção de lesões e robustez física",
     blocks: [
       "10 min de preparação neuromuscular",
       "15 min de velocidade e reação",
@@ -125,22 +105,19 @@ const exerciseLibrary = [
   {
     category: "Força",
     title: "Agachamento controlado",
-    objective:
-      "Desenvolver força de membros inferiores e controle de joelho/quadril.",
+    objective: "Desenvolver força de membros inferiores e controle de joelho e quadril.",
     level: "Intermediário",
   },
   {
     category: "Prevenção",
     title: "Controle escapular com elástico",
-    objective:
-      "Aumentar estabilidade do ombro para suportar volume de golpes e saques.",
+    objective: "Aumentar estabilidade do ombro para suportar volume de golpes e saques.",
     level: "Todos os níveis",
   },
   {
     category: "Resistência",
     title: "Intervalos curtos em quadra",
-    objective:
-      "Simular esforços repetidos do tênis com recuperação incompleta.",
+    objective: "Simular esforços repetidos do tênis com recuperação incompleta.",
     level: "Avançado / Alto rendimento",
   },
 ];
@@ -148,65 +125,55 @@ const exerciseLibrary = [
 const injuryCards = [
   {
     title: "Ombro",
-    content:
-      "Fortalecimento do manguito rotador, controle escapular, mobilidade torácica e progressão gradual do volume de saques.",
+    content: "Fortalecimento do manguito rotador, controle escapular, mobilidade torácica e progressão gradual do volume de saques.",
+    num: "01",
   },
   {
     title: "Cotovelo e punho",
-    content:
-      "Controle da carga de empunhadura, fortalecimento do antebraço e aumento progressivo do tempo de treino com raquete.",
+    content: "Controle da carga de empunhadura, fortalecimento do antebraço e aumento progressivo do tempo de treino com raquete.",
+    num: "02",
   },
   {
     title: "Joelho e tornozelo",
-    content:
-      "Treino de aterrissagem, desaceleração, equilíbrio unilateral, panturrilha e controle multidirecional.",
+    content: "Treino de aterrissagem, desaceleração, equilíbrio unilateral, panturrilha e controle multidirecional.",
+    num: "03",
   },
   {
     title: "Coluna lombar",
-    content:
-      "Mobilidade de quadril, estabilidade do tronco, força anti-rotação e redução de compensações durante golpes potentes.",
+    content: "Mobilidade de quadril, estabilidade do tronco, força anti-rotação e redução de compensações durante golpes potentes.",
+    num: "04",
   },
 ];
 
 const progression = [
-  {
-    week: "Etapa 1",
-    goal: "Avaliação e base",
-    load:
-      "Identificar nível físico, limitações, assimetrias e tolerância inicial ao treino.",
-  },
-  {
-    week: "Etapa 2",
-    goal: "Construção",
-    load:
-      "Desenvolver força, mobilidade, coordenação e resistência básica específica.",
-  },
-  {
-    week: "Etapa 3",
-    goal: "Intensificação",
-    load:
-      "Aumentar velocidade, potência, volume e complexidade dos exercícios em quadra.",
-  },
-  {
-    week: "Etapa 4",
-    goal: "Performance",
-    load:
-      "Integrar o condicionamento aos padrões reais de jogo e controlar a carga semanal.",
-  },
+  { week: "Etapa 1", goal: "Avaliação e base", load: "Identificar nível físico, limitações, assimetrias e tolerância inicial ao treino." },
+  { week: "Etapa 2", goal: "Construção", load: "Desenvolver força, mobilidade, coordenação e resistência básica específica." },
+  { week: "Etapa 3", goal: "Intensificação", load: "Aumentar velocidade, potência, volume e complexidade dos exercícios em quadra." },
+  { week: "Etapa 4", goal: "Performance", load: "Integrar o condicionamento aos padrões reais de jogo e controlar a carga semanal." },
 ];
+
+const warmupSteps = [
+  { num: "01", label: "Ativação geral", desc: "3–5 min de caminhada rápida, corrida leve ou corda." },
+  { num: "02", label: "Mobilidade completa", desc: "Alongamento dinâmico de tornozelo, quadril, coluna, ombros, cotovelos e punhos." },
+  { num: "03", label: "Ativação muscular", desc: "Glúteos, panturrilha, core, estabilizadores do ombro e escápulas." },
+  { num: "04", label: "Movimento específico", desc: "Split step, deslocamento lateral, recuperação de quadra e golpes simulados." },
+];
+
+const categoryColors = {
+  Agilidade: { bg: "#B8F40022", text: "#7AAA00", border: "#B8F40055" },
+  Força: { bg: "#00D4AA22", text: "#009980", border: "#00D4AA55" },
+  Prevenção: { bg: "#FF6B3522", text: "#CC4400", border: "#FF6B3555" },
+  Resistência: { bg: "#A78BFA22", text: "#7C5FD4", border: "#A78BFA55" },
+};
 
 export default function App() {
   const [level, setLevel] = useState("Todos");
   const [query, setQuery] = useState("");
 
   const filteredSessions = useMemo(() => {
-    return sessionTemplates.filter((session) => {
-      const matchesLevel = level === "Todos" || session.level === level;
-      const matchesQuery =
-        `${session.level} ${session.focus} ${session.blocks.join(" ")}`
-          .toLowerCase()
-          .includes(query.toLowerCase());
-
+    return sessionTemplates.filter((s) => {
+      const matchesLevel = level === "Todos" || s.level === level;
+      const matchesQuery = `${s.level} ${s.focus} ${s.blocks.join(" ")}`.toLowerCase().includes(query.toLowerCase());
       return matchesLevel && matchesQuery;
     });
   }, [level, query]);
@@ -217,240 +184,211 @@ export default function App() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900">
-      <section
-        id="home"
-        className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950 px-6 py-20 text-white"
-      >
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute left-10 top-10 h-64 w-64 rounded-full bg-lime-300 blur-3xl" />
-          <div className="absolute bottom-8 right-12 h-72 w-72 rounded-full bg-cyan-400 blur-3xl" />
+    <main style={{ fontFamily: "'DM Sans', 'Outfit', ui-sans-serif, system-ui, sans-serif", background: "#0A0A0A", color: "#F0F0F0", minHeight: "100vh" }}>
+
+      {/* Google Fonts */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,300&family=Bebas+Neue&display=swap');
+        * { box-sizing: border-box; }
+        ::selection { background: #B8F400; color: #0A0A0A; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #111; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        .nav-btn { background: none; border: none; cursor: pointer; font-family: inherit; color: #999; font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 100px; transition: all 0.18s; letter-spacing: 0.02em; }
+        .nav-btn:hover { color: #F0F0F0; background: #ffffff12; }
+        .pill { display: inline-flex; align-items: center; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; }
+        .cta-primary { background: #B8F400; color: #0A0A0A; border: none; border-radius: 100px; padding: 14px 28px; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.18s; letter-spacing: 0.01em; }
+        .cta-primary:hover { background: #CCFF1A; transform: translateY(-1px); }
+        .cta-ghost { background: transparent; color: #F0F0F0; border: 1px solid #333; border-radius: 100px; padding: 13px 28px; font-family: inherit; font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.18s; }
+        .cta-ghost:hover { border-color: #666; background: #ffffff08; }
+        .card-dark { background: #141414; border: 1px solid #1E1E1E; border-radius: 16px; }
+        .card-lined { background: #0F0F0F; border: 1px solid #1A1A1A; border-radius: 16px; transition: border-color 0.2s; }
+        .card-lined:hover { border-color: #2A2A2A; }
+        .tag-box { background: #1A1A1A; border-radius: 8px; padding: 3px 10px; font-size: 12px; color: #888; font-weight: 500; }
+        input, select { background: #141414; border: 1px solid #222; border-radius: 10px; color: #F0F0F0; font-family: inherit; font-size: 14px; padding: 9px 14px; outline: none; transition: border-color 0.18s; }
+        input:focus, select:focus { border-color: #B8F400; }
+        select option { background: #141414; }
+        input::placeholder { color: #555; }
+        .accent-line { height: 2px; background: linear-gradient(90deg, #B8F400, transparent); border-radius: 1px; }
+        @media (max-width: 768px) {
+          .hero-title { font-size: 52px !important; }
+          .hero-grid { grid-template-columns: 1fr !important; }
+          .cards-3 { grid-template-columns: 1fr !important; }
+          .cards-4 { grid-template-columns: 1fr 1fr !important; }
+          .cards-2 { grid-template-columns: 1fr !important; }
+          .prog-grid { grid-template-columns: 1fr 1fr !important; }
+        }
+        @media (max-width: 480px) {
+          .cards-4 { grid-template-columns: 1fr !important; }
+          .prog-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
+
+      {/* HERO */}
+      <section id="home" style={{ position: "relative", overflow: "hidden", padding: "120px 24px 100px", minHeight: "100vh", display: "flex", alignItems: "center" }}>
+        {/* background decoration */}
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
+          <div style={{ position: "absolute", top: "-10%", right: "-5%", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, #B8F40015 0%, transparent 70%)" }} />
+          <div style={{ position: "absolute", bottom: "10%", left: "-10%", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, #00D4AA0D 0%, transparent 70%)" }} />
+          {/* faint court lines */}
+          <svg style={{ position: "absolute", right: 0, bottom: 0, opacity: 0.04 }} width="500" height="400" viewBox="0 0 500 400">
+            <line x1="250" y1="0" x2="250" y2="400" stroke="white" strokeWidth="1.5"/>
+            <line x1="0" y1="200" x2="500" y2="200" stroke="white" strokeWidth="1.5"/>
+            <rect x="50" y="50" width="400" height="300" stroke="white" strokeWidth="1.5" fill="none"/>
+            <rect x="150" y="50" width="200" height="300" stroke="white" strokeWidth="1" fill="none"/>
+            <ellipse cx="250" cy="200" rx="60" ry="60" stroke="white" strokeWidth="1" fill="none"/>
+          </svg>
         </div>
 
-        <div className="relative mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl"
-          >
-            <span className="inline-flex rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-lime-100 ring-1 ring-white/20">
-              Time de Tênis de Campo AAACHSA • Coach Daniel Parra
-            </span>
+        <div style={{ position: "relative", maxWidth: 1100, margin: "0 auto", width: "100%" }}>
+          <motion.div initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#1A1A1A", border: "1px solid #2A2A2A", borderRadius: 100, padding: "6px 16px", marginBottom: 32 }}>
+              <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#B8F400", display: "inline-block" }} />
+              <span style={{ fontSize: 12, color: "#999", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase" }}>AAACHSA • Coach Daniel Parra</span>
+            </div>
 
-            <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-6xl">
-              Condicionamento físico para jogadores de alto rendimento.
+            <h1 className="hero-title" style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 96, lineHeight: 0.9, letterSpacing: "0.01em", margin: 0, marginBottom: 32, color: "#F5F5F5" }}>
+              Condicionamento<br />
+              <span style={{ color: "#B8F400" }}>Físico</span> para<br />
+              Tênis de Campo
             </h1>
 
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-200">
-              Um guia objetivo para desenvolver força, agilidade, resistência,
-              mobilidade e prevenção de lesões em jogadores de tênis de nível
-              intermediário e avançado.
+            <p style={{ fontSize: 17, lineHeight: 1.7, color: "#888", maxWidth: 560, marginBottom: 40, fontWeight: 300 }}>
+              Desenvolva força, agilidade, resistência e mobilidade com um guia objetivo para jogadores de nível intermediário e avançado.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button onClick={() => scrollTo("sessions")}>
-                Ver treinos
-              </Button>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              <button className="cta-primary" onClick={() => scrollTo("sessions")}>Ver treinos</button>
+              <button className="cta-ghost" onClick={() => scrollTo("contact")}>Falar com o coach</button>
+            </div>
 
-              <Button onClick={() => scrollTo("contact")} variant="outline">
-                Falar com o coach
-              </Button>
+            {/* stat row */}
+            <div style={{ display: "flex", gap: 40, marginTop: 64, flexWrap: "wrap" }}>
+              {[["4", "Capacidades físicas"], ["3", "Níveis de treino"], ["4", "Etapas de progressão"]].map(([n, l]) => (
+                <div key={l}>
+                  <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 48, color: "#F5F5F5", lineHeight: 1 }}>{n}</div>
+                  <div style={{ fontSize: 13, color: "#666", fontWeight: 400, marginTop: 4 }}>{l}</div>
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
       </section>
 
-      <nav className="sticky top-0 z-20 border-b border-slate-200 bg-white/90 px-6 py-3 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl gap-2 overflow-x-auto">
-          {sections.map((section) => (
-            <button
-              key={section.id}
-              onClick={() => scrollTo(section.id)}
-              className="whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-slate-700 hover:bg-lime-50 hover:text-teal-700"
-            >
-              {section.label}
-            </button>
+      {/* NAV */}
+      <nav style={{ position: "sticky", top: 0, zIndex: 50, background: "#0A0A0Aee", backdropFilter: "blur(12px)", borderBottom: "1px solid #1A1A1A", padding: "0 24px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", gap: 2, overflowX: "auto", padding: "8px 0" }}>
+          {sections.map((s) => (
+            <button key={s.id} className="nav-btn" onClick={() => scrollTo(s.id)}>{s.label}</button>
           ))}
         </div>
       </nav>
 
-      <section id="about" className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      {/* ABOUT */}
+      <section id="about" style={{ padding: "96px 24px", maxWidth: 1100, margin: "0 auto" }}>
+        <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
           <div>
-            <h2 className="text-3xl font-bold tracking-tight">Sobre o guia</h2>
-
-            <p className="mt-4 leading-7 text-slate-600">
-              Este guia reúne os eixos principais do treinamento físico aplicado
-              ao tênis, com foco na melhora do desempenho em quadra. A proposta
-              integra pilares do treinamento esportivo com habilidades
-              fundamentais e específicas do tênis: deslocamento, força,
-              resistência, mobilidade, potência e controle corporal.
+            <span className="pill" style={{ background: "#B8F40018", color: "#B8F400", marginBottom: 20 }}>Sobre o guia</span>
+            <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 56, color: "#F5F5F5", margin: 0, lineHeight: 0.95 }}>Uma abordagem integrada ao tênis</h2>
+          </div>
+          <div>
+            <p style={{ fontSize: 16, lineHeight: 1.8, color: "#888", margin: 0, marginBottom: 24 }}>
+              Este guia reúne os eixos principais do treinamento físico aplicado ao tênis, com foco na melhora do desempenho em quadra. A proposta integra pilares do treinamento esportivo com habilidades específicas do tênis.
             </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Card>
-              <CardContent>
-                <Stethoscope className="h-7 w-7 text-teal-600" />
-
-                <h3 className="mt-4 font-semibold">
-                  Conceito esportivo e preventivo
-                </h3>
-
-                <p className="mt-2 text-sm text-slate-600">
-                  Treinar desempenho sem ignorar controle de carga, prevenção
-                  de lesões e adaptação progressiva do sistema osteomuscular.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent>
-                <Zap className="h-7 w-7 text-teal-600" />
-
-                <h3 className="mt-4 font-semibold">Objetivo em quadra</h3>
-
-                <p className="mt-2 text-sm text-slate-600">
-                  Melhorar velocidade, estabilidade, resistência e capacidade de
-                  repetir esforços com qualidade técnica.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <section id="target" className="bg-white px-6 py-16">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
-          <div>
-            <div className="flex items-center gap-3">
-              <Users className="h-7 w-7 text-teal-600" />
-              <h2 className="text-3xl font-bold tracking-tight">
-                Para quem é
-              </h2>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+              {[{ icon: <Stethoscope size={18}/>, label: "Conceito preventivo", desc: "Treinar desempenho sem ignorar controle de carga e progressão." },
+                { icon: <Zap size={18}/>, label: "Objetivo em quadra", desc: "Velocidade, estabilidade, resistência e repetição de qualidade." }
+              ].map(({ icon, label, desc }) => (
+                <div key={label} className="card-dark" style={{ padding: 20 }}>
+                  <div style={{ color: "#B8F400", marginBottom: 12 }}>{icon}</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: "#E0E0E0", marginBottom: 6 }}>{label}</div>
+                  <div style={{ fontSize: 13, color: "#666", lineHeight: 1.6 }}>{desc}</div>
+                </div>
+              ))}
             </div>
-
-            <p className="mt-4 leading-7 text-slate-600">
-              Para jogadores de nível intermediário e avançado que desejam
-              potencializar o desempenho físico no tênis, aumentar a tolerância
-              ao treinamento e evoluir com uma estrutura progressiva.
-            </p>
           </div>
-
-          <Card className="bg-slate-900 text-white">
-            <CardContent className="p-7">
-              <h3 className="text-xl font-bold">Perfil do jogador</h3>
-
-              <ul className="mt-5 space-y-3 text-sm text-slate-200">
-                <li>• Já possui base técnica no tênis.</li>
-                <li>• Busca melhorar deslocamento, força e resistência.</li>
-                <li>• Quer treinar com progressão e menor risco de lesão.</li>
-                <li>
-                  • Tem interesse em evoluir para padrões de maior rendimento.
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
         </div>
       </section>
 
-      <section id="warmup" className="mx-auto max-w-6xl px-6 py-16">
-        <h2 className="text-3xl font-bold tracking-tight">Aquecimento</h2>
+      {/* TARGET */}
+      <section id="target" style={{ background: "#0D0D0D", borderTop: "1px solid #1A1A1A", borderBottom: "1px solid #1A1A1A", padding: "80px 24px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+                <Users size={20} style={{ color: "#00D4AA" }} />
+                <span className="pill" style={{ background: "#00D4AA18", color: "#00D4AA" }}>Para quem é</span>
+              </div>
+              <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 52, color: "#F5F5F5", margin: 0, marginBottom: 20, lineHeight: 0.95 }}>Jogadores intermediários e avançados</h2>
+              <p style={{ fontSize: 15, color: "#777", lineHeight: 1.8 }}>Para quem quer potencializar o desempenho físico no tênis, aumentar a tolerância ao treinamento e evoluir com uma estrutura progressiva.</p>
+            </div>
+            <div className="card-dark" style={{ padding: 32 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: "#555", textTransform: "uppercase", marginBottom: 20 }}>Perfil do jogador</div>
+              {[
+                "Já possui base técnica no tênis.",
+                "Busca melhorar deslocamento, força e resistência.",
+                "Quer treinar com progressão e menor risco de lesão.",
+                "Tem interesse em evoluir para maior rendimento.",
+              ].map((item, i) => (
+                <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start", marginBottom: i < 3 ? 16 : 0 }}>
+                  <div style={{ width: 22, height: 22, borderRadius: "50%", background: "#B8F40018", border: "1px solid #B8F40030", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
+                    <ChevronRight size={12} style={{ color: "#B8F400" }} />
+                  </div>
+                  <span style={{ fontSize: 14, color: "#AAAAAA", lineHeight: 1.6 }}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <p className="mt-3 max-w-3xl text-slate-600">
-          O aquecimento deve preparar o corpo para correr, frear, mudar de
-          direção e executar golpes com segurança. A estrutura inicial combina
-          ativação geral, mobilidade e preparação específica para o tênis.
+      {/* WARMUP */}
+      <section id="warmup" style={{ padding: "96px 24px", maxWidth: 1100, margin: "0 auto" }}>
+        <span className="pill" style={{ background: "#FF6B3518", color: "#FF6B35", marginBottom: 16 }}>Aquecimento</span>
+        <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 52, color: "#F5F5F5", margin: 0, marginBottom: 12, lineHeight: 0.95 }}>Prepare o corpo para a quadra</h2>
+        <p style={{ fontSize: 15, color: "#666", maxWidth: 560, marginBottom: 48, lineHeight: 1.7 }}>
+          O aquecimento combina ativação geral, mobilidade e preparação específica para correr, frear e executar golpes com segurança.
         </p>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-4">
-          {[
-            "Ativação geral",
-            "Mobilidade completa",
-            "Ativação muscular",
-            "Movimento específico",
-          ].map((item, index) => (
-            <Card key={item}>
-              <CardContent>
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-lime-100 font-bold text-teal-700">
-                  {index + 1}
-                </div>
-
-                <h3 className="mt-4 font-semibold">{item}</h3>
-
-                <p className="mt-2 text-sm text-slate-600">
-                  {index === 0 &&
-                    "3–5 minutos de caminhada rápida, corrida leve ou corda."}
-                  {index === 1 &&
-                    "Alongamento dinâmico de tornozelo, quadril, coluna, ombros, cotovelos e punhos."}
-                  {index === 2 &&
-                    "Glúteos, panturrilha, core, estabilizadores do ombro e escápulas."}
-                  {index === 3 &&
-                    "Split step, deslocamento lateral, recuperação de quadra e golpes simulados."}
-                </p>
-              </CardContent>
-            </Card>
+        <div className="cards-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
+          {warmupSteps.map(({ num, label, desc }) => (
+            <div key={num} className="card-lined" style={{ padding: 24 }}>
+              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 48, color: "#1E1E1E", lineHeight: 1, marginBottom: 16 }}>{num}</div>
+              <div className="accent-line" style={{ marginBottom: 16, width: 32 }} />
+              <div style={{ fontSize: 14, fontWeight: 700, color: "#E0E0E0", marginBottom: 10 }}>{label}</div>
+              <div style={{ fontSize: 13, color: "#666", lineHeight: 1.6 }}>{desc}</div>
+            </div>
           ))}
         </div>
       </section>
 
-      <section id="capacities" className="bg-white px-6 py-16">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold tracking-tight">
-            Capacidades físicas prioritárias
-          </h2>
-
-          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+      {/* CAPACITIES */}
+      <section id="capacities" style={{ background: "#0D0D0D", borderTop: "1px solid #1A1A1A", borderBottom: "1px solid #1A1A1A", padding: "80px 24px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 52, color: "#F5F5F5", margin: 0, marginBottom: 48, lineHeight: 0.95 }}>Capacidades físicas prioritárias</h2>
+          <div className="cards-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
             {capacities.map((cap) => (
-              <Card
-                key={cap.title}
-                className="transition hover:-translate-y-1 hover:shadow-md"
-              >
-                <CardContent>
-                  <div className="text-teal-600">{cap.icon}</div>
-                  <h3 className="mt-4 font-semibold">{cap.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    {cap.text}
-                  </p>
-                </CardContent>
-              </Card>
+              <div key={cap.title} className="card-dark" style={{ padding: 24, borderTop: `2px solid ${cap.accent}` }}>
+                <div style={{ color: cap.accent, marginBottom: 16 }}>{cap.icon}</div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: "#E0E0E0", marginBottom: 10 }}>{cap.title}</div>
+                <div style={{ fontSize: 13, color: "#666", lineHeight: 1.7 }}>{cap.text}</div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="sessions" className="mx-auto max-w-6xl px-6 py-16">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      {/* SESSIONS */}
+      <section id="sessions" style={{ padding: "96px 24px", maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 24, marginBottom: 48 }}>
           <div>
-            <h2 className="text-3xl font-bold tracking-tight">
-              Treinos por nível
-            </h2>
-
-            <p className="mt-3 max-w-2xl text-slate-600">
-              Os treinos serão organizados em níveis progressivos e categorias
-              específicas para cada segmento de melhora: força, agilidade,
-              resistência, mobilidade e prevenção.
-            </p>
+            <span className="pill" style={{ background: "#A78BFA18", color: "#A78BFA", marginBottom: 16 }}>Treinos por nível</span>
+            <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 52, color: "#F5F5F5", margin: 0, lineHeight: 0.95 }}>Estrutura de treino progressiva</h2>
           </div>
-
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <div className="relative">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
-
-              <input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Buscar objetivo..."
-                className="h-10 rounded-xl border border-slate-200 pl-9 pr-3 text-sm outline-none ring-lime-200 focus:ring-4"
-              />
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+            <div style={{ position: "relative" }}>
+              <Search size={14} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#555", pointerEvents: "none" }} />
+              <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Buscar objetivo..." style={{ paddingLeft: 36, minWidth: 200 }} />
             </div>
-
-            <select
-              value={level}
-              onChange={(e) => setLevel(e.target.value)}
-              className="h-10 rounded-xl border border-slate-200 px-3 text-sm outline-none ring-lime-200 focus:ring-4"
-            >
+            <select value={level} onChange={(e) => setLevel(e.target.value)}>
               <option>Todos</option>
               <option>Intermediário</option>
               <option>Avançado</option>
@@ -459,174 +397,136 @@ export default function App() {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-5 lg:grid-cols-3">
-          {filteredSessions.map((session) => (
-            <Card key={session.level}>
-              <CardContent>
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-xl font-bold">{session.level}</h3>
-                  <span className="rounded-full bg-lime-100 px-3 py-1 text-xs font-semibold text-teal-700">
-                    {session.duration}
-                  </span>
+        <div className="cards-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+          {filteredSessions.length === 0 && (
+            <div style={{ gridColumn: "1/-1", textAlign: "center", padding: 48, color: "#555" }}>Nenhum treino encontrado.</div>
+          )}
+          {filteredSessions.map((session, idx) => (
+            <motion.div key={session.level} className="card-dark" style={{ padding: 28 }}
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.08 }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
+                <h3 style={{ fontSize: 20, fontWeight: 700, color: "#F0F0F0", margin: 0 }}>{session.level}</h3>
+                <span className="pill tag-box">{session.tag}</span>
+              </div>
+              <p style={{ fontSize: 13, color: "#666", lineHeight: 1.7, marginBottom: 24 }}>{session.focus}</p>
+              <div style={{ borderTop: "1px solid #1E1E1E", paddingTop: 20 }}>
+                {session.blocks.map((block) => (
+                  <div key={block} style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 10 }}>
+                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#B8F400", flexShrink: 0 }} />
+                    <span style={{ fontSize: 13, color: "#888" }}>{block}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* LIBRARY */}
+      <section id="library" style={{ background: "#0D0D0D", borderTop: "1px solid #1A1A1A", borderBottom: "1px solid #1A1A1A", padding: "80px 24px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 52, color: "#F5F5F5", margin: 0, marginBottom: 12, lineHeight: 0.95 }}>Biblioteca de exercícios</h2>
+          <p style={{ fontSize: 15, color: "#666", maxWidth: 560, marginBottom: 48, lineHeight: 1.7 }}>
+            Esta seção será construída progressivamente com exercícios, fotos, vídeos, objetivo, nível indicado e volume sugerido.
+          </p>
+          <div className="cards-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
+            {exerciseLibrary.map((exercise) => {
+              const c = categoryColors[exercise.category] || { bg: "#B8F40018", text: "#B8F400", border: "#B8F40030" };
+              return (
+                <div key={exercise.title} className="card-lined" style={{ padding: 24 }}>
+                  <span className="pill" style={{ background: c.bg, color: c.text, border: `1px solid ${c.border}`, marginBottom: 16 }}>{exercise.category}</span>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: "#E0E0E0", marginBottom: 10, lineHeight: 1.4 }}>{exercise.title}</div>
+                  <div style={{ fontSize: 13, color: "#666", lineHeight: 1.6, marginBottom: 16 }}>{exercise.objective}</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#444", letterSpacing: "0.06em", textTransform: "uppercase" }}>Nível: <span style={{ color: "#666" }}>{exercise.level}</span></div>
                 </div>
-
-                <p className="mt-4 text-sm leading-6 text-slate-600">
-                  {session.focus}
-                </p>
-
-                <ul className="mt-5 space-y-3">
-                  {session.blocks.map((block) => (
-                    <li key={block} className="flex gap-3 text-sm text-slate-700">
-                      <span className="mt-1 h-2 w-2 rounded-full bg-lime-400" />
-                      {block}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      <section id="library" className="bg-white px-6 py-16">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold tracking-tight">
-            Biblioteca de exercícios
-          </h2>
-
-          <p className="mt-3 max-w-3xl text-slate-600">
-            Esta seção será construída progressivamente com exercícios, fotos,
-            vídeos, objetivo, nível indicado, volume sugerido e principais erros
-            a evitar.
-          </p>
-
-          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {exerciseLibrary.map((exercise) => (
-              <Card key={exercise.title}>
-                <CardContent>
-                  <span className="rounded-full bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-700">
-                    {exercise.category}
-                  </span>
-
-                  <h3 className="mt-4 font-semibold">{exercise.title}</h3>
-
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    {exercise.objective}
-                  </p>
-
-                  <p className="mt-4 text-xs font-medium text-slate-500">
-                    Nível: {exercise.level}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      <section id="injury" className="mx-auto max-w-6xl px-6 py-16">
-        <h2 className="text-3xl font-bold tracking-tight">
-          Prevenção de lesões
-        </h2>
-
-        <p className="mt-3 max-w-3xl text-slate-600">
-          O condicionamento físico é essencial para reduzir o risco de lesões. O
-          aumento progressivo da frequência, do volume e da intensidade do
-          treinamento permite melhor adaptação osteomuscular e maior tolerância
-          às demandas do tênis.
+      {/* INJURY */}
+      <section id="injury" style={{ padding: "96px 24px", maxWidth: 1100, margin: "0 auto" }}>
+        <span className="pill" style={{ background: "#FF6B3518", color: "#FF6B35", marginBottom: 16 }}>Prevenção de lesões</span>
+        <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 52, color: "#F5F5F5", margin: 0, marginBottom: 16, lineHeight: 0.95 }}>Proteger é tão importante quanto treinar</h2>
+        <p style={{ fontSize: 15, color: "#666", maxWidth: 600, marginBottom: 48, lineHeight: 1.7 }}>
+          O condicionamento físico é essencial para reduzir o risco de lesões. O aumento progressivo do volume permite melhor adaptação osteomuscular ao tênis.
         </p>
-
-        <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <div className="cards-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
           {injuryCards.map((card) => (
-            <Card
-              key={card.title}
-              className="border-l-4 border-l-lime-400"
-            >
-              <CardContent>
-                <h3 className="font-semibold">{card.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  {card.content}
-                </p>
-              </CardContent>
-            </Card>
+            <div key={card.title} className="card-dark" style={{ padding: 24, position: "relative", overflow: "hidden" }}>
+              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 72, color: "#161616", position: "absolute", right: 8, bottom: -8, lineHeight: 1, userSelect: "none" }}>{card.num}</div>
+              <div style={{ width: 24, height: 2, background: "#B8F400", borderRadius: 1, marginBottom: 16 }} />
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#E0E0E0", marginBottom: 12 }}>{card.title}</div>
+              <div style={{ fontSize: 13, color: "#666", lineHeight: 1.7, position: "relative" }}>{card.content}</div>
+            </div>
           ))}
         </div>
       </section>
 
-      <section id="progression" className="bg-slate-900 px-6 py-16 text-white">
-        <div className="mx-auto max-w-6xl">
-          <div className="flex items-center gap-3">
-            <CalendarDays className="h-7 w-7 text-lime-300" />
-            <h2 className="text-3xl font-bold tracking-tight">
-              Plano de progressão
-            </h2>
+      {/* PROGRESSION */}
+      <section id="progression" style={{ background: "#0D0D0D", borderTop: "1px solid #1A1A1A", padding: "80px 24px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+            <CalendarDays size={20} style={{ color: "#B8F400" }} />
+            <span className="pill" style={{ background: "#B8F40018", color: "#B8F400" }}>Plano de progressão</span>
           </div>
-
-          <p className="mt-4 max-w-3xl text-slate-300">
-            O plano de 4 semanas será definido após organizar melhor a
-            biblioteca de exercícios e as categorias de treino. A estrutura
-            inicial seguirá estas etapas:
+          <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 52, color: "#F5F5F5", margin: 0, marginBottom: 16, lineHeight: 0.95 }}>4 etapas para evolução</h2>
+          <p style={{ fontSize: 15, color: "#666", maxWidth: 560, marginBottom: 48, lineHeight: 1.7 }}>
+            O plano será definido após organizar a biblioteca de exercícios e categorias de treino. A estrutura inicial segue estas etapas:
           </p>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-4">
-            {progression.map((item) => (
-              <Card
-                key={item.week}
-                className="border border-white/10 bg-white/10 text-white"
-              >
-                <CardContent>
-                  <span className="text-sm font-semibold text-lime-300">
-                    {item.week}
-                  </span>
-
-                  <h3 className="mt-3 text-lg font-bold">{item.goal}</h3>
-
-                  <p className="mt-2 text-sm leading-6 text-slate-300">
-                    {item.load}
-                  </p>
-                </CardContent>
-              </Card>
+          <div className="prog-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 2 }}>
+            {progression.map((item, i) => (
+              <div key={item.week} style={{
+                background: i === 0 ? "#141414" : i === 1 ? "#111" : i === 2 ? "#0E0E0E" : "#0C0C0C",
+                border: "1px solid #1A1A1A",
+                borderRadius: i === 0 ? "12px 0 0 12px" : i === 3 ? "0 12px 12px 0" : 0,
+                padding: 28,
+                borderRight: i < 3 ? "none" : "1px solid #1A1A1A",
+              }}>
+                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: "#B8F400", textTransform: "uppercase", marginBottom: 16 }}>{item.week}</div>
+                <div style={{ fontSize: 18, fontWeight: 700, color: "#E0E0E0", marginBottom: 12 }}>{item.goal}</div>
+                <div style={{ fontSize: 13, color: "#666", lineHeight: 1.7 }}>{item.load}</div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="contact" className="bg-white px-6 py-16">
-        <div className="mx-auto max-w-6xl rounded-3xl bg-gradient-to-br from-slate-950 to-teal-950 p-8 text-white shadow-sm md:p-10">
-          <div className="grid gap-8 md:grid-cols-[1.2fr_0.8fr] md:items-center">
-            <div>
-              <h2 className="text-3xl font-bold tracking-tight">Contato</h2>
-
-              <p className="mt-4 text-slate-200">
-                Para orientações, organização dos treinos e acompanhamento do
-                time de tênis de campo AAACHSA.
-              </p>
-
-              <p className="mt-4 font-semibold">Coach Daniel Parra</p>
-              <p className="text-slate-300">+1 470 836 7932</p>
+      {/* CONTACT */}
+      <section id="contact" style={{ padding: "80px 24px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ background: "#111", border: "1px solid #1E1E1E", borderRadius: 24, padding: "56px 48px", position: "relative", overflow: "hidden" }}>
+            {/* bg accent */}
+            <div style={{ position: "absolute", top: -80, right: -80, width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, #B8F40012 0%, transparent 70%)", pointerEvents: "none" }} />
+            <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 48, alignItems: "center", position: "relative" }}>
+              <div>
+                <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 52, color: "#F5F5F5", margin: 0, marginBottom: 16, lineHeight: 0.95 }}>Fale com o Coach</h2>
+                <p style={{ fontSize: 15, color: "#666", lineHeight: 1.7, margin: 0, marginBottom: 20 }}>
+                  Para orientações, organização dos treinos e acompanhamento do time de tênis de campo AAACHSA.
+                </p>
+                <div style={{ fontSize: 15, fontWeight: 700, color: "#E0E0E0" }}>Coach Daniel Parra</div>
+                <div style={{ fontSize: 13, color: "#555", marginTop: 4 }}>+1 470 836 7932</div>
+              </div>
+              <a href={whatsappLink} target="_blank" rel="noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "#B8F400", color: "#0A0A0A", borderRadius: 100, padding: "16px 32px", fontWeight: 700, fontSize: 15, textDecoration: "none", transition: "all 0.18s", whiteSpace: "nowrap" }}
+                onMouseEnter={e => e.currentTarget.style.background = "#CCFF1A"}
+                onMouseLeave={e => e.currentTarget.style.background = "#B8F400"}>
+                <Phone size={18} />
+                Enviar mensagem
+              </a>
             </div>
-
-            <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-lime-400 px-6 py-4 font-semibold text-slate-950 transition hover:bg-lime-300"
-            >
-              <Phone className="h-5 w-5" />
-              Enviar mensagem
-            </a>
           </div>
         </div>
       </section>
 
-      <footer className="bg-slate-950 px-6 py-8 text-slate-400">
-        <div className="mx-auto max-w-6xl text-sm">
-          <p>
-            Condicionamento físico do time de tênis de campo AAACHSA • Coach
-            Daniel Parra. Material educativo e prático. Os exercícios devem ser
-            adaptados ao nível, histórico de lesões e restrições individuais de
-            cada jogador.
-          </p>
+      {/* FOOTER */}
+      <footer style={{ borderTop: "1px solid #111", padding: "28px 24px", background: "#060606" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
+          <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 18, color: "#333", letterSpacing: "0.05em" }}>AAACHSA</div>
+          <div style={{ fontSize: 12, color: "#444", lineHeight: 1.6, maxWidth: 480, textAlign: "right" }}>
+            Condicionamento físico do time de tênis de campo AAACHSA • Coach Daniel Parra. Os exercícios devem ser adaptados ao nível, histórico de lesões e restrições individuais de cada jogador.
+          </div>
         </div>
       </footer>
     </main>
