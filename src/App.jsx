@@ -145,7 +145,14 @@ const exerciseLibrary = [
     level: "Avançado / Alto rendimento",
   },
 ];
-
+{
+  category: "Resistência aeróbica",
+  title: "30 minutos de exercício aeróbico contínuo",
+  objective:
+    "Manter esforço leve a moderado por 30 minutos, buscando aproximadamente 60–70% da frequência cardíaca máxima e controle da respiração.",
+  level: "Intermediário / Avançado",
+  image: "/images/aerobico-30min.png",
+},
 const injuryCards = [
   {
     title: "Ombro",
@@ -222,6 +229,7 @@ const categoryColors = {
   Força: { bg: "#00D4AA22", text: "#009980", border: "#00D4AA55" },
   Prevenção: { bg: "#FF6B3522", text: "#CC4400", border: "#FF6B3555" },
   Resistência: { bg: "#A78BFA22", text: "#7C5FD4", border: "#A78BFA55" },
+  "Resistência aeróbica": { bg: "#38BDF822", text: "#38BDF8", border: "#38BDF855" },
 };
 
 export default function App() {
@@ -1032,44 +1040,86 @@ export default function App() {
                   border: "#B8F40030",
                 };
               return (
-                <div key={exercise.title} className="card-lined" style={{ padding: 24 }}>
-                  <span
-                    className="pill"
-                    style={{
-                      background: c.bg,
-                      color: c.text,
-                      border: `1px solid ${c.border}`,
-                      marginBottom: 16,
-                    }}
-                  >
-                    {exercise.category}
-                  </span>
-                  <div
-                    style={{
-                      fontSize: 14,
-                      fontWeight: 700,
-                      color: "#E0E0E0",
-                      marginBottom: 10,
-                      lineHeight: 1.4,
-                    }}
-                  >
-                    {exercise.title}
-                  </div>
-                  <div style={{ fontSize: 13, color: "#666", lineHeight: 1.6, marginBottom: 16 }}>
-                    {exercise.objective}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: 11,
-                      fontWeight: 700,
-                      color: "#444",
-                      letterSpacing: "0.06em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    Nível: <span style={{ color: "#666" }}>{exercise.level}</span>
-                  </div>
-                </div>
+              <div
+  key={exercise.title}
+  className="card-lined"
+  style={{
+    overflow: "hidden",
+  }}
+>
+  {exercise.image && (
+    <div
+      style={{
+        height: 220,
+        background: "#F4EFE8",
+        borderBottom: "1px solid #1A1A1A",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <img
+        src={exercise.image}
+        alt={exercise.title}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+          padding: 10,
+        }}
+      />
+    </div>
+  )}
+
+  <div style={{ padding: 24 }}>
+    <span
+      className="pill"
+      style={{
+        background: c.bg,
+        color: c.text,
+        border: `1px solid ${c.border}`,
+        marginBottom: 16,
+      }}
+    >
+      {exercise.category}
+    </span>
+
+    <div
+      style={{
+        fontSize: 14,
+        fontWeight: 700,
+        color: "#E0E0E0",
+        marginBottom: 10,
+        lineHeight: 1.4,
+      }}
+    >
+      {exercise.title}
+    </div>
+
+    <div
+      style={{
+        fontSize: 13,
+        color: "#666",
+        lineHeight: 1.6,
+        marginBottom: 16,
+      }}
+    >
+      {exercise.objective}
+    </div>
+
+    <div
+      style={{
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#444",
+        letterSpacing: "0.06em",
+        textTransform: "uppercase",
+      }}
+    >
+      Nível: <span style={{ color: "#666" }}>{exercise.level}</span>
+    </div>
+  </div>
+</div>
               );
             })}
           </div>
