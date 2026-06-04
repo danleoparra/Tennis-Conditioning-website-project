@@ -12,6 +12,7 @@ import {
   Users,
   ChevronRight,
   Search,
+  ShoppingBag,
 } from "lucide-react";
 
 const contactNumber = "+14708367932";
@@ -24,6 +25,7 @@ const sections = [
   { id: "warmup", label: "Aquecimento" },
   { id: "sessions", label: "Treinos" },
   { id: "library", label: "Biblioteca" },
+  { id: "purchases", label: "Compras" },
   { id: "injury", label: "Prevenção" },
   { id: "progression", label: "Plano" },
   { id: "contact", label: "Contato" },
@@ -151,6 +153,37 @@ const exerciseLibrary = [
       "Manter esforço leve a moderado por 30 minutos, buscando aproximadamente 60–70% da frequência cardíaca máxima e controle da respiração.",
     level: "Intermediário / Avançado",
     image: "/images/aerobico-30min.png",
+  },
+];
+
+const recommendedPurchases = [
+  {
+    category: "Aquecimento",
+    title: "Corda de pular ajustável",
+    reason:
+      "Útil para ativação geral, coordenação, ritmo de pés e preparação cardiovascular antes do treino em quadra.",
+    priority: "Essencial",
+  },
+  {
+    category: "Mobilidade",
+    title: "Mini bands / faixas elásticas",
+    reason:
+      "Indicadas para ativação de quadril, estabilidade de joelho, controle escapular e exercícios preventivos de baixa carga.",
+    priority: "Essencial",
+  },
+  {
+    category: "Agilidade",
+    title: "Cones ou marcadores de quadra",
+    reason:
+      "Facilitam exercícios de deslocamento, mudança de direção, desaceleração e padrões específicos do tênis.",
+    priority: "Recomendado",
+  },
+  {
+    category: "Recuperação",
+    title: "Rolo de liberação miofascial",
+    reason:
+      "Pode auxiliar na rotina de recuperação, mobilidade final e percepção corporal após sessões com maior volume.",
+    priority: "Opcional",
   },
 ];
 
@@ -1124,6 +1157,145 @@ export default function App() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      <section id="purchases" style={{ padding: "96px 24px", maxWidth: 1100, margin: "0 auto" }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+            gap: 24,
+            marginBottom: 48,
+          }}
+        >
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <ShoppingBag size={20} style={{ color: "#B8F400" }} />
+              <span
+                className="pill"
+                style={{ background: "#B8F40018", color: "#B8F400" }}
+              >
+                Compras recomendadas
+              </span>
+            </div>
+            <h2
+              style={{
+                fontFamily: "'Bebas Neue', sans-serif",
+                fontSize: 52,
+                color: "#F5F5F5",
+                margin: 0,
+                marginBottom: 12,
+                lineHeight: 0.95,
+              }}
+            >
+              Equipamentos básicos para treinar melhor
+            </h2>
+            <p
+              style={{
+                fontSize: 15,
+                color: "#666",
+                maxWidth: 620,
+                lineHeight: 1.7,
+                margin: 0,
+              }}
+            >
+              Sugestões simples para apoiar aquecimento, mobilidade, agilidade,
+              prevenção e recuperação. Os produtos devem ser escolhidos de acordo
+              com o nível físico, histórico de lesões e objetivo de cada jogador.
+            </p>
+          </div>
+        </div>
+
+        <div
+          className="cards-4"
+          style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}
+        >
+          {recommendedPurchases.map((item, idx) => (
+            <div
+              key={item.title}
+              className="card-lined"
+              style={{
+                padding: 24,
+                background: "#101010",
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: 64,
+                  color: "#171717",
+                  position: "absolute",
+                  right: 10,
+                  top: 8,
+                  lineHeight: 1,
+                  userSelect: "none",
+                }}
+              >
+                {String(idx + 1).padStart(2, "0")}
+              </div>
+
+              <span
+                className="pill"
+                style={{
+                  background: "#B8F40014",
+                  color: "#B8F400",
+                  border: "1px solid #B8F40030",
+                  marginBottom: 16,
+                  position: "relative",
+                }}
+              >
+                {item.category}
+              </span>
+
+              <div
+                style={{
+                  fontSize: 16,
+                  fontWeight: 700,
+                  color: "#E0E0E0",
+                  marginBottom: 12,
+                  lineHeight: 1.4,
+                  position: "relative",
+                }}
+              >
+                {item.title}
+              </div>
+
+              <div
+                style={{
+                  fontSize: 13,
+                  color: "#666",
+                  lineHeight: 1.65,
+                  marginBottom: 18,
+                  position: "relative",
+                }}
+              >
+                {item.reason}
+              </div>
+
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  borderRadius: 100,
+                  border: "1px solid #2A2A2A",
+                  padding: "6px 10px",
+                  fontSize: 11,
+                  fontWeight: 700,
+                  color: "#888",
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  position: "relative",
+                }}
+              >
+                Prioridade: <span style={{ color: "#B8F400", marginLeft: 4 }}>{item.priority}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
