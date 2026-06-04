@@ -308,11 +308,7 @@ const categoryColors = {
   Força: { bg: "#00D4AA22", text: "#009980", border: "#00D4AA55" },
   Prevenção: { bg: "#FF6B3522", text: "#CC4400", border: "#FF6B3555" },
   Resistência: { bg: "#A78BFA22", text: "#7C5FD4", border: "#A78BFA55" },
-  "Resistência aeróbica": {
-    bg: "#38BDF822",
-    text: "#38BDF8",
-    border: "#38BDF855",
-  },
+  "Resistência aeróbica": { bg: "#38BDF822", text: "#38BDF8", border: "#38BDF855" },
 };
 
 export default function App() {
@@ -367,6 +363,47 @@ export default function App() {
         select option { background: #141414; }
         input::placeholder { color: #555; }
         .accent-line { height: 2px; background: linear-gradient(90deg, #B8F400, transparent); border-radius: 1px; }
+        .hero-character-wrap {
+          position: absolute;
+          right: max(24px, calc((100vw - 1100px) / 2));
+          top: 50%;
+          width: min(430px, 40vw);
+          min-height: 520px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform: translateY(-45%);
+          pointer-events: none;
+          z-index: 1;
+        }
+        .hero-character-wrap::before {
+          content: "";
+          position: absolute;
+          width: 420px;
+          height: 420px;
+          border-radius: 50%;
+          background: radial-gradient(circle, #B8F40018 0%, transparent 68%);
+          filter: blur(8px);
+        }
+        .hero-character-wrap::after {
+          content: "";
+          position: absolute;
+          width: 78%;
+          height: 78%;
+          border: 1px solid #B8F40018;
+          border-radius: 40px;
+          transform: rotate(-4deg);
+        }
+        .hero-character {
+          position: relative;
+          width: min(420px, 100%);
+          max-height: 540px;
+          object-fit: contain;
+          opacity: 0.62;
+          filter: grayscale(1) contrast(1.15) brightness(0.9);
+          mix-blend-mode: screen;
+          transform: translateY(18px);
+        }
         @media (max-width: 768px) {
           .hero-title { font-size: 52px !important; }
           .hero-grid { grid-template-columns: 1fr !important; }
@@ -374,10 +411,13 @@ export default function App() {
           .cards-4 { grid-template-columns: 1fr 1fr !important; }
           .cards-2 { grid-template-columns: 1fr !important; }
           .prog-grid { grid-template-columns: 1fr 1fr !important; }
+          .hero-character-wrap { position: relative; right: auto; top: auto; width: min(320px, 90%); min-height: 340px; margin: 40px auto 0; transform: none; opacity: 0.65; }
+          .hero-character { width: min(320px, 90%); opacity: 0.48; }
         }
         @media (max-width: 480px) {
           .cards-4 { grid-template-columns: 1fr !important; }
           .prog-grid { grid-template-columns: 1fr !important; }
+          .hero-character-wrap { min-height: 280px; margin-top: 28px; }
         }
       `}</style>
 
@@ -423,15 +463,74 @@ export default function App() {
             height="400"
             viewBox="0 0 500 400"
           >
-            <line x1="250" y1="0" x2="250" y2="400" stroke="white" strokeWidth="1.5" />
-            <line x1="0" y1="200" x2="500" y2="200" stroke="white" strokeWidth="1.5" />
-            <rect x="50" y="50" width="400" height="300" stroke="white" strokeWidth="1.5" fill="none" />
-            <rect x="150" y="50" width="200" height="300" stroke="white" strokeWidth="1" fill="none" />
-            <ellipse cx="250" cy="200" rx="60" ry="60" stroke="white" strokeWidth="1" fill="none" />
+            <line
+              x1="250"
+              y1="0"
+              x2="250"
+              y2="400"
+              stroke="white"
+              strokeWidth="1.5"
+            />
+            <line
+              x1="0"
+              y1="200"
+              x2="500"
+              y2="200"
+              stroke="white"
+              strokeWidth="1.5"
+            />
+            <rect
+              x="50"
+              y="50"
+              width="400"
+              height="300"
+              stroke="white"
+              strokeWidth="1.5"
+              fill="none"
+            />
+            <rect
+              x="150"
+              y="50"
+              width="200"
+              height="300"
+              stroke="white"
+              strokeWidth="1"
+              fill="none"
+            />
+            <ellipse
+              cx="250"
+              cy="200"
+              rx="60"
+              ry="60"
+              stroke="white"
+              strokeWidth="1"
+              fill="none"
+            />
           </svg>
         </div>
 
-        <div style={{ position: "relative", maxWidth: 1100, margin: "0 auto", width: "100%" }}>
+        <motion.div
+          className="hero-character-wrap"
+          initial={{ opacity: 0, x: 36 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <img
+            className="hero-character"
+            src="/images/coach-character.png"
+            alt="Ilustração de condicionamento físico para tênis"
+          />
+        </motion.div>
+
+        <div
+          style={{
+            position: "relative",
+            maxWidth: 1100,
+            margin: "0 auto",
+            width: "100%",
+            zIndex: 2,
+          }}
+        >
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
@@ -530,7 +629,14 @@ export default function App() {
                   >
                     {n}
                   </div>
-                  <div style={{ fontSize: 13, color: "#666", fontWeight: 400, marginTop: 4 }}>
+                  <div
+                    style={{
+                      fontSize: 13,
+                      color: "#666",
+                      fontWeight: 400,
+                      marginTop: 4,
+                    }}
+                  >
                     {l}
                   </div>
                 </div>
@@ -580,7 +686,10 @@ export default function App() {
           }}
         >
           <div>
-            <span className="pill" style={{ background: "#B8F40018", color: "#B8F400", marginBottom: 20 }}>
+            <span
+              className="pill"
+              style={{ background: "#B8F40018", color: "#B8F400", marginBottom: 20 }}
+            >
               Sobre o guia
             </span>
             <h2
@@ -596,7 +705,15 @@ export default function App() {
             </h2>
           </div>
           <div>
-            <p style={{ fontSize: 16, lineHeight: 1.8, color: "#888", margin: 0, marginBottom: 24 }}>
+            <p
+              style={{
+                fontSize: 16,
+                lineHeight: 1.8,
+                color: "#888",
+                margin: 0,
+                marginBottom: 24,
+              }}
+            >
               Este guia reúne os eixos principais do treinamento físico aplicado
               ao tênis, com foco na melhora do desempenho em quadra. A proposta
               integra pilares do treinamento esportivo com habilidades
@@ -617,10 +734,19 @@ export default function App() {
               ].map(({ icon, label, desc }) => (
                 <div key={label} className="card-dark" style={{ padding: 20 }}>
                   <div style={{ color: "#B8F400", marginBottom: 12 }}>{icon}</div>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: "#E0E0E0", marginBottom: 6 }}>
+                  <div
+                    style={{
+                      fontSize: 13,
+                      fontWeight: 700,
+                      color: "#E0E0E0",
+                      marginBottom: 6,
+                    }}
+                  >
                     {label}
                   </div>
-                  <div style={{ fontSize: 13, color: "#666", lineHeight: 1.6 }}>{desc}</div>
+                  <div style={{ fontSize: 13, color: "#666", lineHeight: 1.6 }}>
+                    {desc}
+                  </div>
                 </div>
               ))}
             </div>
@@ -629,7 +755,10 @@ export default function App() {
       </section>
 
       <section id="warmup" style={{ padding: "96px 24px", maxWidth: 1100, margin: "0 auto" }}>
-        <span className="pill" style={{ background: "#FF6B3518", color: "#FF6B35", marginBottom: 16 }}>
+        <span
+          className="pill"
+          style={{ background: "#FF6B3518", color: "#FF6B35", marginBottom: 16 }}
+        >
           Aquecimento
         </span>
         <h2
@@ -644,55 +773,97 @@ export default function App() {
         >
           Prepare o corpo para a quadra
         </h2>
-        <p style={{ fontSize: 15, color: "#666", maxWidth: 560, marginBottom: 48, lineHeight: 1.7 }}>
+        <p
+          style={{
+            fontSize: 15,
+            color: "#666",
+            maxWidth: 560,
+            marginBottom: 48,
+            lineHeight: 1.7,
+          }}
+        >
           O aquecimento combina ativação geral, mobilidade e preparação
           específica para correr, frear e executar golpes com segurança.
         </p>
 
-        <div className="cards-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-          {warmupSteps.map(({ num, label, desc, image }) => (
-            <div key={num} className="card-lined" style={{ overflow: "hidden", background: "#101010" }}>
-              <div
-                style={{
-                  height: 280,
-                  background: "#F4EFE8",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderBottom: "1px solid #1A1A1A",
-                }}
-              >
-                <img
-                  src={image}
-                  alt={label}
-                  style={{ width: "100%", height: "100%", objectFit: "contain", padding: 12 }}
-                />
-              </div>
+        <div
+  className="cards-3"
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: 20,
+  }}
+>
+  {warmupSteps.map(({ num, label, desc, image }) => (
+    <div
+      key={num}
+      className="card-lined"
+      style={{
+        overflow: "hidden",
+        background: "#101010",
+      }}
+    >
+      <div
+        style={{
+          height: 280,
+          background: "#F4EFE8",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderBottom: "1px solid #1A1A1A",
+        }}
+      >
+        <img
+          src={image}
+          alt={label}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+            padding: 12,
+          }}
+        />
+      </div>
 
-              <div style={{ padding: 24 }}>
-                <div
-                  style={{
-                    fontFamily: "'Bebas Neue', sans-serif",
-                    fontSize: 44,
-                    color: "#1E1E1E",
-                    lineHeight: 1,
-                    marginBottom: 14,
-                  }}
-                >
-                  {num}
-                </div>
-
-                <div className="accent-line" style={{ marginBottom: 16, width: 36 }} />
-
-                <div style={{ fontSize: 15, fontWeight: 700, color: "#E0E0E0", marginBottom: 10 }}>
-                  {label}
-                </div>
-
-                <div style={{ fontSize: 13, color: "#777", lineHeight: 1.65 }}>{desc}</div>
-              </div>
-            </div>
-          ))}
+      <div style={{ padding: 24 }}>
+        <div
+          style={{
+            fontFamily: "'Bebas Neue', sans-serif",
+            fontSize: 44,
+            color: "#1E1E1E",
+            lineHeight: 1,
+            marginBottom: 14,
+          }}
+        >
+          {num}
         </div>
+
+        <div className="accent-line" style={{ marginBottom: 16, width: 36 }} />
+
+        <div
+          style={{
+            fontSize: 15,
+            fontWeight: 700,
+            color: "#E0E0E0",
+            marginBottom: 10,
+          }}
+        >
+          {label}
+        </div>
+
+        <div
+          style={{
+            fontSize: 13,
+            color: "#777",
+            lineHeight: 1.65,
+          }}
+        >
+          {desc}
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
       </section>
 
       <section
@@ -717,14 +888,30 @@ export default function App() {
           >
             Capacidades físicas prioritárias
           </h2>
-          <div className="cards-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
+          <div
+            className="cards-4"
+            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}
+          >
             {capacities.map((cap) => (
-              <div key={cap.title} className="card-dark" style={{ padding: 24, borderTop: `2px solid ${cap.accent}` }}>
+              <div
+                key={cap.title}
+                className="card-dark"
+                style={{ padding: 24, borderTop: `2px solid ${cap.accent}` }}
+              >
                 <div style={{ color: cap.accent, marginBottom: 16 }}>{cap.icon}</div>
-                <div style={{ fontSize: 14, fontWeight: 700, color: "#E0E0E0", marginBottom: 10 }}>
+                <div
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 700,
+                    color: "#E0E0E0",
+                    marginBottom: 10,
+                  }}
+                >
                   {cap.title}
                 </div>
-                <div style={{ fontSize: 13, color: "#666", lineHeight: 1.7 }}>{cap.text}</div>
+                <div style={{ fontSize: 13, color: "#666", lineHeight: 1.7 }}>
+                  {cap.text}
+                </div>
               </div>
             ))}
           </div>
@@ -743,7 +930,10 @@ export default function App() {
           }}
         >
           <div>
-            <span className="pill" style={{ background: "#A78BFA18", color: "#A78BFA", marginBottom: 16 }}>
+            <span
+              className="pill"
+              style={{ background: "#A78BFA18", color: "#A78BFA", marginBottom: 16 }}
+            >
               Treinos por nível
             </span>
             <h2
@@ -790,7 +980,10 @@ export default function App() {
           </div>
         </div>
 
-        <div className="cards-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+        <div
+          className="cards-3"
+          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}
+        >
           {filteredSessions.length === 0 && (
             <div style={{ gridColumn: "1/-1", textAlign: "center", padding: 48, color: "#555" }}>
               Nenhum treino encontrado.
@@ -806,7 +999,14 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.08 }}
             >
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  marginBottom: 20,
+                }}
+              >
                 <h3 style={{ fontSize: 20, fontWeight: 700, color: "#F0F0F0", margin: 0 }}>
                   {session.level}
                 </h3>
@@ -858,11 +1058,22 @@ export default function App() {
           >
             Biblioteca de exercícios
           </h2>
-          <p style={{ fontSize: 15, color: "#666", maxWidth: 560, marginBottom: 48, lineHeight: 1.7 }}>
+          <p
+            style={{
+              fontSize: 15,
+              color: "#666",
+              maxWidth: 560,
+              marginBottom: 48,
+              lineHeight: 1.7,
+            }}
+          >
             Esta seção será construída progressivamente com exercícios, fotos,
             vídeos, objetivo, nível indicado e volume sugerido.
           </p>
-          <div className="cards-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
+          <div
+            className="cards-4"
+            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}
+          >
             {exerciseLibrary.map((exercise) => {
               const c =
                 categoryColors[exercise.category] || {
@@ -870,62 +1081,87 @@ export default function App() {
                   text: "#B8F400",
                   border: "#B8F40030",
                 };
-
               return (
-                <div key={exercise.title} className="card-lined" style={{ overflow: "hidden" }}>
-                  {exercise.image && (
-                    <div
-                      style={{
-                        height: 220,
-                        background: "#F4EFE8",
-                        borderBottom: "1px solid #1A1A1A",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <img
-                        src={exercise.image}
-                        alt={exercise.title}
-                        style={{ width: "100%", height: "100%", objectFit: "contain", padding: 10 }}
-                      />
-                    </div>
-                  )}
+              <div
+  key={exercise.title}
+  className="card-lined"
+  style={{
+    overflow: "hidden",
+  }}
+>
+  {exercise.image && (
+    <div
+      style={{
+        height: 220,
+        background: "#F4EFE8",
+        borderBottom: "1px solid #1A1A1A",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <img
+        src={exercise.image}
+        alt={exercise.title}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+          padding: 10,
+        }}
+      />
+    </div>
+  )}
 
-                  <div style={{ padding: 24 }}>
-                    <span
-                      className="pill"
-                      style={{
-                        background: c.bg,
-                        color: c.text,
-                        border: `1px solid ${c.border}`,
-                        marginBottom: 16,
-                      }}
-                    >
-                      {exercise.category}
-                    </span>
+  <div style={{ padding: 24 }}>
+    <span
+      className="pill"
+      style={{
+        background: c.bg,
+        color: c.text,
+        border: `1px solid ${c.border}`,
+        marginBottom: 16,
+      }}
+    >
+      {exercise.category}
+    </span>
 
-                    <div style={{ fontSize: 14, fontWeight: 700, color: "#E0E0E0", marginBottom: 10, lineHeight: 1.4 }}>
-                      {exercise.title}
-                    </div>
+    <div
+      style={{
+        fontSize: 14,
+        fontWeight: 700,
+        color: "#E0E0E0",
+        marginBottom: 10,
+        lineHeight: 1.4,
+      }}
+    >
+      {exercise.title}
+    </div>
 
-                    <div style={{ fontSize: 13, color: "#666", lineHeight: 1.6, marginBottom: 16 }}>
-                      {exercise.objective}
-                    </div>
+    <div
+      style={{
+        fontSize: 13,
+        color: "#666",
+        lineHeight: 1.6,
+        marginBottom: 16,
+      }}
+    >
+      {exercise.objective}
+    </div>
 
-                    <div
-                      style={{
-                        fontSize: 11,
-                        fontWeight: 700,
-                        color: "#444",
-                        letterSpacing: "0.06em",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      Nível: <span style={{ color: "#666" }}>{exercise.level}</span>
-                    </div>
-                  </div>
-                </div>
+    <div
+      style={{
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#444",
+        letterSpacing: "0.06em",
+        textTransform: "uppercase",
+      }}
+    >
+      Nível: <span style={{ color: "#666" }}>{exercise.level}</span>
+    </div>
+  </div>
+</div>
               );
             })}
           </div>
@@ -1144,7 +1380,10 @@ export default function App() {
       </section>
 
       <section id="injury" style={{ padding: "96px 24px", maxWidth: 1100, margin: "0 auto" }}>
-        <span className="pill" style={{ background: "#FF6B3518", color: "#FF6B35", marginBottom: 16 }}>
+        <span
+          className="pill"
+          style={{ background: "#FF6B3518", color: "#FF6B35", marginBottom: 16 }}
+        >
           Prevenção de lesões
         </span>
         <h2
@@ -1159,14 +1398,29 @@ export default function App() {
         >
           Proteger é tão importante quanto treinar
         </h2>
-        <p style={{ fontSize: 15, color: "#666", maxWidth: 600, marginBottom: 48, lineHeight: 1.7 }}>
+        <p
+          style={{
+            fontSize: 15,
+            color: "#666",
+            maxWidth: 600,
+            marginBottom: 48,
+            lineHeight: 1.7,
+          }}
+        >
           O condicionamento físico é essencial para reduzir o risco de lesões. O
           aumento progressivo do volume permite melhor adaptação osteomuscular ao
           tênis.
         </p>
-        <div className="cards-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
+        <div
+          className="cards-4"
+          style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}
+        >
           {injuryCards.map((card) => (
-            <div key={card.title} className="card-dark" style={{ padding: 24, position: "relative", overflow: "hidden" }}>
+            <div
+              key={card.title}
+              className="card-dark"
+              style={{ padding: 24, position: "relative", overflow: "hidden" }}
+            >
               <div
                 style={{
                   fontFamily: "'Bebas Neue', sans-serif",
@@ -1181,11 +1435,33 @@ export default function App() {
               >
                 {card.num}
               </div>
-              <div style={{ width: 24, height: 2, background: "#B8F400", borderRadius: 1, marginBottom: 16 }} />
-              <div style={{ fontSize: 15, fontWeight: 700, color: "#E0E0E0", marginBottom: 12 }}>
+              <div
+                style={{
+                  width: 24,
+                  height: 2,
+                  background: "#B8F400",
+                  borderRadius: 1,
+                  marginBottom: 16,
+                }}
+              />
+              <div
+                style={{
+                  fontSize: 15,
+                  fontWeight: 700,
+                  color: "#E0E0E0",
+                  marginBottom: 12,
+                }}
+              >
                 {card.title}
               </div>
-              <div style={{ fontSize: 13, color: "#666", lineHeight: 1.7, position: "relative" }}>
+              <div
+                style={{
+                  fontSize: 13,
+                  color: "#666",
+                  lineHeight: 1.7,
+                  position: "relative",
+                }}
+              >
                 {card.content}
               </div>
             </div>
@@ -1220,17 +1496,29 @@ export default function App() {
           >
             4 etapas para evolução
           </h2>
-          <p style={{ fontSize: 15, color: "#666", maxWidth: 560, marginBottom: 48, lineHeight: 1.7 }}>
+          <p
+            style={{
+              fontSize: 15,
+              color: "#666",
+              maxWidth: 560,
+              marginBottom: 48,
+              lineHeight: 1.7,
+            }}
+          >
             O plano será definido após organizar a biblioteca de exercícios e
             categorias de treino. A estrutura inicial segue estas etapas:
           </p>
 
-          <div className="prog-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 2 }}>
+          <div
+            className="prog-grid"
+            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 2 }}
+          >
             {progression.map((item, i) => (
               <div
                 key={item.week}
                 style={{
-                  background: i === 0 ? "#141414" : i === 1 ? "#111" : i === 2 ? "#0E0E0E" : "#0C0C0C",
+                  background:
+                    i === 0 ? "#141414" : i === 1 ? "#111" : i === 2 ? "#0E0E0E" : "#0C0C0C",
                   border: "1px solid #1A1A1A",
                   borderRadius: i === 0 ? "12px 0 0 12px" : i === 3 ? "0 12px 12px 0" : 0,
                   padding: 28,
@@ -1252,7 +1540,9 @@ export default function App() {
                 <div style={{ fontSize: 18, fontWeight: 700, color: "#E0E0E0", marginBottom: 12 }}>
                   {item.goal}
                 </div>
-                <div style={{ fontSize: 13, color: "#666", lineHeight: 1.7 }}>{item.load}</div>
+                <div style={{ fontSize: 13, color: "#666", lineHeight: 1.7 }}>
+                  {item.load}
+                </div>
               </div>
             ))}
           </div>
@@ -1306,7 +1596,15 @@ export default function App() {
                 >
                   Fale com o Coach
                 </h2>
-                <p style={{ fontSize: 15, color: "#666", lineHeight: 1.7, margin: 0, marginBottom: 20 }}>
+                <p
+                  style={{
+                    fontSize: 15,
+                    color: "#666",
+                    lineHeight: 1.7,
+                    margin: 0,
+                    marginBottom: 20,
+                  }}
+                >
                   Para orientações, organização dos treinos e acompanhamento do
                   time de tênis de campo AAACHSA.
                 </p>
