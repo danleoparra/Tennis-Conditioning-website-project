@@ -184,6 +184,22 @@ const exerciseLibrary = [
     level: "Intermediário / Avançado",
     image: "/images/aerobico-30min.png",
   },
+  {
+    category: "Potência",
+    title: "Medicine Ball Perpendicular Throws",
+    objective:
+      "Desenvolver potência rotacional, transferência de força do tronco para membros superiores e controle do eixo corporal durante arremessos laterais.",
+    level: "Intermediário / Avançado",
+    videoUrl: "https://www.youtube.com/watch?v=eeRvIl6Qzbc",
+  },
+  {
+    category: "Potência",
+    title: "Medicine Ball Variation Magnus",
+    objective:
+      "Treinar potência explosiva com bola medicinal, coordenação entre membros inferiores, tronco e braços, e produção rápida de força.",
+    level: "Intermediário / Avançado",
+    videoUrl: "https://www.youtube.com/watch?v=9b0owgC8MQk",
+  },
 ];
 
 const recommendedPurchases = [
@@ -309,6 +325,7 @@ const categoryColors = {
   Prevenção: { bg: "#FF6B3522", text: "#CC4400", border: "#FF6B3555" },
   Resistência: { bg: "#A78BFA22", text: "#7C5FD4", border: "#A78BFA55" },
   "Resistência aeróbica": { bg: "#38BDF822", text: "#38BDF8", border: "#38BDF855" },
+  Potência: { bg: "#FACC1522", text: "#FACC15", border: "#FACC1555" },
 };
 
 export default function App() {
@@ -365,47 +382,44 @@ export default function App() {
         .accent-line { height: 2px; background: linear-gradient(90deg, #B8F400, transparent); border-radius: 1px; }
         .hero-character-wrap {
           position: absolute;
-          right: max(0px, calc((100vw - 1280px) / 2));
-          top: 42px;
-          width: min(620px, 46vw);
-          height: min(760px, 88vh);
+          right: max(24px, calc((100vw - 1100px) / 2));
+          top: 50%;
+          width: min(430px, 40vw);
+          min-height: 520px;
           display: flex;
-          align-items: flex-start;
-          justify-content: flex-end;
+          align-items: center;
+          justify-content: center;
+          transform: translateY(-45%);
           pointer-events: none;
           z-index: 1;
-          overflow: visible;
         }
         .hero-character-wrap::before {
           content: "";
           position: absolute;
-          inset: -90px -120px -90px -120px;
-          background:
-            radial-gradient(circle at 72% 18%, #B8F40016 0%, transparent 42%),
-            radial-gradient(circle at 50% 50%, #ffffff08 0%, transparent 55%);
-          filter: blur(10px);
+          width: 420px;
+          height: 420px;
+          border-radius: 50%;
+          background: radial-gradient(circle, #B8F40018 0%, transparent 68%);
+          filter: blur(8px);
         }
         .hero-character-wrap::after {
           content: "";
           position: absolute;
-          inset: -2px;
-          background:
-            linear-gradient(90deg, #0A0A0A 0%, transparent 18%, transparent 72%, #0A0A0A 100%),
-            linear-gradient(180deg, #0A0A0A 0%, transparent 16%, transparent 74%, #0A0A0A 100%);
-          opacity: 0.92;
-          mix-blend-mode: multiply;
+          width: 78%;
+          height: 78%;
+          border: 1px solid #B8F40018;
+          border-radius: 40px;
+          transform: rotate(-4deg);
         }
         .hero-character {
           position: relative;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center top;
-          opacity: 0.48;
-          filter: grayscale(1) contrast(1.18) brightness(0.82);
+          width: min(420px, 100%);
+          max-height: 540px;
+          object-fit: contain;
+          opacity: 0.62;
+          filter: grayscale(1) contrast(1.15) brightness(0.9);
           mix-blend-mode: screen;
-          -webkit-mask-image: radial-gradient(ellipse at 58% 43%, #000 0%, #000 48%, rgba(0,0,0,0.72) 62%, transparent 82%);
-          mask-image: radial-gradient(ellipse at 58% 43%, #000 0%, #000 48%, rgba(0,0,0,0.72) 62%, transparent 82%);
+          transform: translateY(18px);
         }
         @media (max-width: 768px) {
           .hero-title { font-size: 52px !important; }
@@ -414,13 +428,13 @@ export default function App() {
           .cards-4 { grid-template-columns: 1fr 1fr !important; }
           .cards-2 { grid-template-columns: 1fr !important; }
           .prog-grid { grid-template-columns: 1fr 1fr !important; }
-          .hero-character-wrap { position: absolute; right: -90px; top: 70px; width: min(420px, 62vw); height: 520px; opacity: 0.42; }
-          .hero-character { width: 100%; height: 100%; opacity: 0.36; }
+          .hero-character-wrap { position: relative; right: auto; top: auto; width: min(320px, 90%); min-height: 340px; margin: 40px auto 0; transform: none; opacity: 0.65; }
+          .hero-character { width: min(320px, 90%); opacity: 0.48; }
         }
         @media (max-width: 480px) {
           .cards-4 { grid-template-columns: 1fr !important; }
           .prog-grid { grid-template-columns: 1fr !important; }
-          .hero-character-wrap { right: -150px; top: 95px; width: 360px; height: 460px; opacity: 0.28; }
+          .hero-character-wrap { min-height: 280px; margin-top: 28px; }
         }
       `}</style>
 
@@ -1159,10 +1173,45 @@ export default function App() {
         color: "#444",
         letterSpacing: "0.06em",
         textTransform: "uppercase",
+        marginBottom: exercise.videoUrl ? 14 : 0,
       }}
     >
       Nível: <span style={{ color: "#666" }}>{exercise.level}</span>
     </div>
+
+    {exercise.videoUrl && (
+      <a
+        href={exercise.videoUrl}
+        target="_blank"
+        rel="noreferrer"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 100,
+          border: "1px solid #B8F40035",
+          color: "#B8F400",
+          background: "#B8F40010",
+          padding: "8px 12px",
+          fontSize: 11,
+          fontWeight: 700,
+          textDecoration: "none",
+          letterSpacing: "0.06em",
+          textTransform: "uppercase",
+          transition: "all 0.18s",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = "#B8F400";
+          e.currentTarget.style.color = "#0A0A0A";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = "#B8F40010";
+          e.currentTarget.style.color = "#B8F400";
+        }}
+      >
+        Ver vídeo
+      </a>
+    )}
   </div>
 </div>
               );
