@@ -190,6 +190,7 @@ const exerciseLibrary = [
     objective:
       "Desenvolver potência rotacional, transferência de força do tronco para membros superiores e controle do eixo corporal durante arremessos laterais.",
     level: "Intermediário / Avançado",
+    image: "/images/medicine-ball-perpendicular-throws.png",
     videoUrl: "https://www.youtube.com/watch?v=eeRvIl6Qzbc",
   },
   {
@@ -198,6 +199,7 @@ const exerciseLibrary = [
     objective:
       "Treinar potência explosiva com bola medicinal, coordenação entre membros inferiores, tronco e braços, e produção rápida de força.",
     level: "Intermediário / Avançado",
+    image: "/images/medicine-ball-variation-magnus.png",
     videoUrl: "https://www.youtube.com/watch?v=9b0owgC8MQk",
   },
 ];
