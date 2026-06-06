@@ -150,39 +150,60 @@ const sessionTemplates = [
 
 const exerciseLibrary = [
   {
-    category: "Agilidade",
-    title: "Split step + recuperação lateral",
-    objective: "Melhorar reação, equilíbrio e retorno rápido à posição de jogo.",
-    level: "Intermediário / Avançado",
-  },
-  {
-    category: "Força",
-    title: "Agachamento controlado",
-    objective:
-      "Desenvolver força de membros inferiores e controle de joelho e quadril.",
-    level: "Intermediário",
-  },
-  {
-    category: "Prevenção",
-    title: "Controle escapular com elástico",
-    objective:
-      "Aumentar estabilidade do ombro para suportar volume de golpes e saques.",
-    level: "Todos os níveis",
-  },
-  {
-    category: "Resistência",
-    title: "Intervalos curtos em quadra",
-    objective:
-      "Simular esforços repetidos do tênis com recuperação incompleta.",
-    level: "Avançado / Alto rendimento",
-  },
-  {
     category: "Resistência aeróbica",
     title: "30 minutos de exercício aeróbico contínuo",
     objective:
       "Manter esforço leve a moderado por 30 minutos, buscando aproximadamente 60–70% da frequência cardíaca máxima e controle da respiração.",
     level: "Intermediário / Avançado",
     image: "/images/aerobico-30min.png",
+  },
+  {
+    category: "Coordenação",
+    title: "Pulando corda normal",
+    objective:
+      "Desenvolver ritmo, coordenação entre braços e pernas, controle postural e ativação cardiovascular inicial.",
+    level: "Todos os níveis",
+    image: "/images/skipping-rope-normal.png",
+  },
+  {
+    category: "Coordenação",
+    title: "Pulando corda alternando os pés",
+    objective:
+      "Melhorar coordenação dinâmica, ritmo de passada, leveza no contato com o solo e controle do padrão alternado de apoio.",
+    level: "Intermediário",
+    image: "/images/skipping-rope-alternating-feet.png",
+  },
+  {
+    category: "Coordenação",
+    title: "Pulando corda abrindo e fechando os pés",
+    objective:
+      "Treinar coordenação lateral, controle de base, estabilidade de tornozelo e capacidade de alternar rapidamente entre apoio fechado e aberto.",
+    level: "Intermediário",
+    image: "/images/skipping-rope-open-close-feet.png",
+  },
+  {
+    category: "Coordenação",
+    title: "Pulando corda com pés frente-trás",
+    objective:
+      "Trabalhar coordenação anteroposterior, ritmo, controle corporal e alternância rápida entre apoio anterior e posterior a cada salto.",
+    level: "Intermediário / Avançado",
+    image: "/images/skipping-rope-front-back-feet.png",
+  },
+  {
+    category: "Coordenação",
+    title: "Pulando corda com um pé só",
+    objective:
+      "Estimular equilíbrio unilateral, resistência de panturrilha, estabilidade de tornozelo e controle do apoio em um único membro.",
+    level: "Intermediário / Avançado",
+    image: "/images/skipping-rope-one-foot.png",
+  },
+  {
+    category: "Resistência anaeróbica",
+    title: "Esteira anaeróbica: 1 min sprint + 3 min trote",
+    objective:
+      "Repetir blocos de alta intensidade com recuperação ativa, simulando exigências intermitentes do tênis e melhorando tolerância à fadiga.",
+    level: "Avançado",
+    image: "/images/treadmill-anaerobic-sprint.png",
   },
   {
     category: "Potência",
@@ -327,6 +348,8 @@ const categoryColors = {
   Prevenção: { bg: "#FF6B3522", text: "#CC4400", border: "#FF6B3555" },
   Resistência: { bg: "#A78BFA22", text: "#7C5FD4", border: "#A78BFA55" },
   "Resistência aeróbica": { bg: "#38BDF822", text: "#38BDF8", border: "#38BDF855" },
+  "Resistência anaeróbica": { bg: "#F472B622", text: "#F472B6", border: "#F472B655" },
+  Coordenação: { bg: "#B8F40022", text: "#B8F400", border: "#B8F40055" },
   Potência: { bg: "#FACC1522", text: "#FACC15", border: "#FACC1555" },
 };
 
