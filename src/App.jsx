@@ -75,75 +75,184 @@ const capacities = [
 
 const sessionTemplates = [
   {
-    level: "Resistência aeróbica",
-    tag: "30–45 min",
+    level: "Rotina aeróbica e coordenação",
+    tag: "35–45 min",
+    routineLevel: "Todos os níveis",
     focus:
-      "Melhorar a capacidade de sustentar o esforço global da sessão e acelerar a recuperação entre pontos e exercícios.",
-    blocks: [
-      "5–8 min de aquecimento progressivo",
-      "20–30 min de corrida leve, bike, corda leve ou deslocamento contínuo",
-      "Controle de intensidade em esforço leve a moderado",
-      "Finalização com mobilidade e respiração controlada",
+      "Resistência geral, ritmo de movimento e recuperação entre estímulos.",
+    exercises: [
+      {
+        name: "Pulando corda normal",
+        series: "3",
+        reps: "45 s",
+        rest: "30 s",
+      },
+      {
+        name: "Pulando corda alternando os pés",
+        series: "3",
+        reps: "45 s",
+        rest: "30 s",
+      },
+      {
+        name: "Exercício aeróbico contínuo",
+        series: "1",
+        reps: "20–30 min",
+        rest: "—",
+      },
+      {
+        name: "Mobilidade leve final",
+        series: "1",
+        reps: "5 min",
+        rest: "—",
+      },
     ],
   },
   {
-    level: "Resistência anaeróbica",
-    tag: "15–25 min",
+    level: "Rotina anaeróbica e agilidade",
+    tag: "25–35 min",
+    routineLevel: "Intermediário / Avançado",
     focus:
-      "Desenvolver a capacidade de repetir esforços curtos e intensos com recuperação incompleta, semelhante às demandas do tênis.",
-    blocks: [
-      "Séries curtas de 10–30 segundos em alta intensidade",
-      "Mudanças de direção com pausas incompletas",
-      "Intervalos em padrão de rally",
-      "Controle da técnica mesmo sob fadiga",
+      "Explosão repetida, mudança de direção e maior tolerância à fadiga.",
+    exercises: [
+      {
+        name: "Pulando corda normal",
+        series: "2",
+        reps: "60 s",
+        rest: "30 s",
+      },
+      {
+        name: "Pulando corda abrindo e fechando os pés",
+        series: "2",
+        reps: "45 s",
+        rest: "30 s",
+      },
+      {
+        name: "Footwork em figura 8",
+        series: "5",
+        reps: "30 s",
+        rest: "45–60 s",
+      },
+      {
+        name: "Footwork em figura 8 com miniband",
+        series: "4",
+        reps: "20–30 s",
+        rest: "60 s",
+      },
+      {
+        name: "Esteira anaeróbica: 1 min sprint + 3 min trote",
+        series: "4–5",
+        reps: "1 min sprint + 3 min trote",
+        rest: "Trote ativo",
+      },
     ],
   },
   {
-    level: "Footwork",
-    tag: "20–30 min",
+    level: "Rotina de core e potência rotacional",
+    tag: "30–40 min",
+    routineLevel: "Intermediário / Avançado",
     focus:
-      "Melhorar deslocamento, ajuste fino dos pés, split step, recuperação lateral e posicionamento para golpear.",
-    blocks: [
-      "Split step + reação",
-      "Passos laterais e cruzados",
-      "Ajustes curtos antes do golpe",
-      "Recuperação para o centro da quadra",
+      "Core, rotação de tronco e transferência de força para golpes do tênis.",
+    exercises: [
+      {
+        name: "Pulando corda alternando os pés",
+        series: "3",
+        reps: "45 s",
+        rest: "30 s",
+      },
+      {
+        name: "Rotação de tronco com faixa elástica",
+        series: "3",
+        reps: "12 por lado",
+        rest: "30–45 s",
+      },
+      {
+        name: "Rotação diagonal no cabo",
+        series: "3–4",
+        reps: "10 por lado",
+        rest: "60 s",
+      },
+      {
+        name: "Russian Twist com bola medicinal",
+        series: "3",
+        reps: "16–20 repetições",
+        rest: "45 s",
+      },
+      {
+        name: "Medicine Ball Perpendicular Throws",
+        series: "4",
+        reps: "8 por lado",
+        rest: "60–90 s",
+      },
+      {
+        name: "Medicine Ball Overhead Slam",
+        series: "4",
+        reps: "8–10 repetições",
+        rest: "60–90 s",
+      },
     ],
   },
   {
-    level: "Coordenação",
-    tag: "15–25 min",
+    level: "Circuito físico completo para tênis",
+    tag: "40–50 min",
+    routineLevel: "Avançado",
     focus:
-      "Aprimorar ritmo, controle corporal, dissociação entre membros e organização motora durante exercícios específicos.",
-    blocks: [
-      "Sequências com escada de agilidade",
-      "Exercícios com bola e deslocamento",
-      "Coordenação entre braços, tronco e pernas",
-      "Progressão de simples para complexo",
-    ],
-  },
-  {
-    level: "Potência",
-    tag: "20–35 min",
-    focus:
-      "Aumentar a capacidade de produzir força rapidamente em arrancadas, saltos, golpes e mudanças de direção.",
-    blocks: [
-      "Saltos controlados",
-      "Arremessos com bola medicinal",
-      "Arrancadas curtas",
-      "Ênfase em qualidade, velocidade e recuperação adequada",
-    ],
-  },
-  {
-    level: "Velocidade",
-    tag: "15–25 min",
-    focus:
-      "Melhorar reação, aceleração, frenagem e reposicionamento rápido em situações específicas de jogo.",
-    blocks: [
-      "Estímulos visuais ou sonoros",
-      "Sprints curtos de 3–10 metros",
-      "Frenagem e mudança de direção",
-      "Recuperação completa para manter alta qualidade",
+      "Integração de coordenação, agilidade, core, potência e resistência anaeróbica.",
+    note: "Fazer 3–4 voltas do circuito.",
+    exercises: [
+      {
+        name: "Pulando corda normal",
+        series: "2",
+        reps: "60 s",
+        rest: "30 s",
+      },
+      {
+        name: "Pulando corda frente-trás",
+        series: "2",
+        reps: "45 s",
+        rest: "30 s",
+      },
+      {
+        name: "Rotação de tronco com faixa elástica",
+        series: "2",
+        reps: "12 por lado",
+        rest: "30–45 s",
+      },
+      {
+        name: "Footwork em figura 8",
+        series: "3–4",
+        reps: "30 s",
+        rest: "Dentro do circuito",
+      },
+      {
+        name: "Medicine Ball Overhead Slam",
+        series: "3–4",
+        reps: "10 repetições",
+        rest: "Dentro do circuito",
+      },
+      {
+        name: "Russian Twist com bola medicinal",
+        series: "3–4",
+        reps: "20 repetições",
+        rest: "Dentro do circuito",
+      },
+      {
+        name: "Footwork em figura 8 com miniband",
+        series: "3–4",
+        reps: "20–30 s",
+        rest: "Dentro do circuito",
+      },
+      {
+        name: "Medicine Ball Perpendicular Throws",
+        series: "3–4",
+        reps: "8 por lado",
+        rest: "Dentro do circuito",
+      },
+      {
+        name: "Pulando corda alternando os pés",
+        series: "3–4",
+        reps: "45 s",
+        rest: "60–90 s ao final da volta",
+      },
     ],
   },
 ];
@@ -204,88 +313,6 @@ const exerciseLibrary = [
       "Repetir blocos de alta intensidade com recuperação ativa, simulando exigências intermitentes do tênis e melhorando tolerância à fadiga.",
     level: "Avançado",
     image: "/images/treadmill-anaerobic-sprint.png",
-  },
-  {
-    category: "Força",
-    title: "Rotação diagonal no cabo",
-    objective:
-      "Fortalecer tronco, ombros e quadril em padrão rotacional, melhorando controle corporal e transferência de força para golpes do tênis.",
-    level: "Intermediário / Avançado",
-    image: "/images/cable-diagonal-rotation.png",
-    videoUrl: "https://www.youtube.com/watch?v=0ddNVDEykz0",
-  },
-  {
-    category: "Agilidade",
-    title: "Footwork em figura 8",
-    objective:
-      "Treinar deslocamento lateral e diagonal, mudança de direção, controle de centro de massa e recuperação rápida entre dois cones.",
-    level: "Intermediário / Avançado",
-    image: "/images/figure-8-cone-footwork.png",
-    videoUrl: "https://www.youtube.com/watch?v=SDpZ6ULSE3Y",
-  },
-  {
-    category: "Potência",
-    title: "Medicine Ball Overhead Slam",
-    objective:
-      "Desenvolver potência global com ênfase em extensão e flexão rápida do tronco, coordenação entre braços, core e membros inferiores.",
-    level: "Intermediário / Avançado",
-    image: "/images/medicine-ball-overhead-slam.png",
-  },
-  {
-    category: "Agilidade",
-    title: "Footwork em figura 8 com miniband",
-    objective:
-      "Treinar deslocamento lateral e diagonal com resistência elástica, melhorando controle de quadril, estabilidade de joelho e mudança de direção.",
-    level: "Intermediário / Avançado",
-    image: "/images/figure-8-miniband-footwork.png",
-  },
-  {
-    category: "Força",
-    title: "Rotação de tronco com faixa elástica",
-    objective:
-      "Fortalecer o core em padrão rotacional, melhorando dissociação entre tronco e quadril e controle da aceleração em golpes de direita e esquerda.",
-    level: "Intermediário",
-    image: "/images/elastic-band-trunk-rotation.png",
-  },
-  {
-    category: "Core",
-    title: "Medicine Ball Sit-up Throw",
-    objective:
-      "Trabalhar flexão de tronco, força abdominal dinâmica e coordenação entre membros superiores e core durante a transição deitado-sentado.",
-    level: "Intermediário / Avançado",
-    image: "/images/medicine-ball-sit-up-throw.png",
-  },
-  {
-    category: "Core",
-    title: "Russian Twist com bola medicinal",
-    objective:
-      "Desenvolver resistência e controle rotacional do tronco, com ênfase em estabilidade pélvica e controle do movimento lado a lado.",
-    level: "Intermediário",
-    image: "/images/seated-medicine-ball-russian-twist.png",
-  },
-  {
-    category: "Core",
-    title: "Russian Twist com amplitude controlada",
-    objective:
-      "Aumentar controle rotacional, estabilidade abdominal e coordenação entre tronco, ombros e quadril durante rotações alternadas.",
-    level: "Intermediário / Avançado",
-    image: "/images/seated-medicine-ball-rotational-twist.png",
-  },
-  {
-    category: "Core",
-    title: "Medicine Ball Crunch to Toes",
-    objective:
-      "Fortalecer abdômen anterior e flexores do quadril, integrando elevação de tronco e pernas com controle da bola medicinal.",
-    level: "Intermediário / Avançado",
-    image: "/images/medicine-ball-crunch-to-toes.png",
-  },
-  {
-    category: "Core",
-    title: "Medicine Ball V-up",
-    objective:
-      "Treinar força abdominal, coordenação tronco-pernas e controle excêntrico durante a passagem da posição deitada para o padrão em V.",
-    level: "Avançado",
-    image: "/images/medicine-ball-v-up.png",
   },
   {
     category: "Potência",
@@ -433,7 +460,6 @@ const categoryColors = {
   "Resistência anaeróbica": { bg: "#F472B622", text: "#F472B6", border: "#F472B655" },
   Coordenação: { bg: "#B8F40022", text: "#B8F400", border: "#B8F40055" },
   Potência: { bg: "#FACC1522", text: "#FACC15", border: "#FACC1555" },
-  Core: { bg: "#A78BFA22", text: "#A78BFA", border: "#A78BFA55" },
 };
 
 export default function App() {
@@ -442,8 +468,12 @@ export default function App() {
 
   const filteredSessions = useMemo(() => {
     return sessionTemplates.filter((s) => {
+      const exerciseText = (s.exercises || [])
+        .map((item) => `${item.name} ${item.series} ${item.reps} ${item.rest}`)
+        .join(" ");
+      const blockText = (s.blocks || []).join(" ");
       const matchesLevel = level === "Todos" || s.level === level;
-      const matchesQuery = `${s.level} ${s.focus} ${s.blocks.join(" ")}`
+      const matchesQuery = `${s.level} ${s.routineLevel || ""} ${s.focus} ${s.note || ""} ${blockText} ${exerciseText}`
         .toLowerCase()
         .includes(query.toLowerCase());
       return matchesLevel && matchesQuery;
@@ -740,7 +770,7 @@ export default function App() {
             <div style={{ display: "flex", gap: 40, marginTop: 64, flexWrap: "wrap" }}>
               {[
                 ["7", "Capacidades físicas"],
-                ["6", "Eixos de treino"],
+                ["4", "Rotinas de treino"],
                 ["4", "Etapas de progressão"],
               ].map(([n, l]) => (
                 <div key={l}>
@@ -1070,7 +1100,7 @@ export default function App() {
                 lineHeight: 0.95,
               }}
             >
-              Eixos principais do condicionamento
+              Rotinas estruturadas de treino
             </h2>
           </div>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
@@ -1089,25 +1119,23 @@ export default function App() {
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Buscar objetivo..."
+                placeholder="Buscar rotina..."
                 style={{ paddingLeft: 36, minWidth: 200 }}
               />
             </div>
             <select value={level} onChange={(e) => setLevel(e.target.value)}>
               <option>Todos</option>
-              <option>Resistência aeróbica</option>
-              <option>Resistência anaeróbica</option>
-              <option>Footwork</option>
-              <option>Coordenação</option>
-              <option>Potência</option>
-              <option>Velocidade</option>
+              <option>Rotina aeróbica e coordenação</option>
+              <option>Rotina anaeróbica e agilidade</option>
+              <option>Rotina de core e potência rotacional</option>
+              <option>Circuito físico completo para tênis</option>
             </select>
           </div>
         </div>
 
         <div
-          className="cards-3"
-          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}
+          className="cards-2"
+          style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }}
         >
           {filteredSessions.length === 0 && (
             <div style={{ gridColumn: "1/-1", textAlign: "center", padding: 48, color: "#555" }}>
@@ -1127,35 +1155,126 @@ export default function App() {
               <div
                 style={{
                   display: "flex",
-                  alignItems: "center",
+                  alignItems: "flex-start",
                   justifyContent: "space-between",
-                  marginBottom: 20,
+                  gap: 16,
+                  marginBottom: 18,
                 }}
               >
-                <h3 style={{ fontSize: 20, fontWeight: 700, color: "#F0F0F0", margin: 0 }}>
-                  {session.level}
-                </h3>
+                <div>
+                  <h3
+                    style={{
+                      fontSize: 20,
+                      fontWeight: 700,
+                      color: "#F0F0F0",
+                      margin: 0,
+                      marginBottom: 8,
+                      lineHeight: 1.25,
+                    }}
+                  >
+                    {session.level}
+                  </h3>
+                  <div
+                    style={{
+                      fontSize: 12,
+                      color: "#777",
+                      lineHeight: 1.5,
+                      fontWeight: 600,
+                    }}
+                  >
+                    Nível: <span style={{ color: "#AAA" }}>{session.routineLevel}</span>
+                  </div>
+                </div>
                 <span className="pill tag-box">{session.tag}</span>
               </div>
-              <p style={{ fontSize: 13, color: "#666", lineHeight: 1.7, marginBottom: 24 }}>
+
+              <p
+                style={{
+                  fontSize: 13,
+                  color: "#666",
+                  lineHeight: 1.7,
+                  marginBottom: session.note ? 10 : 20,
+                }}
+              >
+                <strong style={{ color: "#888" }}>Objetivo:</strong>{" "}
                 {session.focus}
               </p>
-              <div style={{ borderTop: "1px solid #1E1E1E", paddingTop: 20 }}>
-                {session.blocks.map((block) => (
-                  <div key={block} style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 10 }}>
-                    <div
-                      style={{
-                        width: 6,
-                        height: 6,
-                        borderRadius: "50%",
-                        background: "#B8F400",
-                        flexShrink: 0,
-                      }}
-                    />
-                    <span style={{ fontSize: 13, color: "#888" }}>{block}</span>
+
+              {session.note && (
+                <p
+                  style={{
+                    fontSize: 13,
+                    color: "#B8F400",
+                    lineHeight: 1.6,
+                    margin: 0,
+                    marginBottom: 20,
+                    fontWeight: 700,
+                  }}
+                >
+                  {session.note}
+                </p>
+              )}
+
+              {session.exercises && (
+                <div style={{ borderTop: "1px solid #1E1E1E", paddingTop: 16 }}>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1.5fr 0.55fr 1fr 0.8fr",
+                      gap: 10,
+                      paddingBottom: 10,
+                      borderBottom: "1px solid #1E1E1E",
+                      fontSize: 10,
+                      color: "#555",
+                      fontWeight: 800,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    <span>Exercício</span>
+                    <span>Séries</span>
+                    <span>Repetição / tempo</span>
+                    <span>Descanso</span>
                   </div>
-                ))}
-              </div>
+
+                  {session.exercises.map((exercise, exerciseIdx) => (
+                    <div
+                      key={`${session.level}-${exercise.name}`}
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "1.5fr 0.55fr 1fr 0.8fr",
+                        gap: 10,
+                        padding: "12px 0",
+                        borderBottom:
+                          exerciseIdx < session.exercises.length - 1
+                            ? "1px solid #1A1A1A"
+                            : "none",
+                        alignItems: "start",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: 12,
+                          color: "#D0D0D0",
+                          lineHeight: 1.45,
+                          fontWeight: 600,
+                        }}
+                      >
+                        {exercise.name}
+                      </span>
+                      <span style={{ fontSize: 12, color: "#888", lineHeight: 1.45 }}>
+                        {exercise.series}
+                      </span>
+                      <span style={{ fontSize: 12, color: "#888", lineHeight: 1.45 }}>
+                        {exercise.reps}
+                      </span>
+                      <span style={{ fontSize: 12, color: "#888", lineHeight: 1.45 }}>
+                        {exercise.rest}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
